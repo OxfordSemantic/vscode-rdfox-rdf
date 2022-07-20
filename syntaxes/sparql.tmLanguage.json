@@ -1,0 +1,71 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SPARQL",
+	"scopeName": "source.sparql",
+	"patterns": [
+        {
+			"include": "#prefix"
+		},
+		{
+			"include": "source.n-triples#blank-node-label"
+		},
+		{
+			"include": "source.turtle#iri"
+		},
+		{
+			"include": "source.turtle#literal"
+		},
+		{
+			"include": "#keyword"
+		},
+        {
+            "include": "#function"
+        },
+        {
+            "include": "#operator"
+        },
+        {
+            "include": "#property-path-symbol"
+        },
+		{
+			"include": "source.turtle#comment"
+		}
+	],
+	"repository": {
+        "prefix": {
+			"name": "keyword.control.sparql",
+			"match": "(?i)(?<=^|\\s)(prefix|base)(?=\\s)"
+		},
+		"keyword": {
+            "name": "keyword.control.sparql",
+            "match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(add|all|as|asc|ask|bind|clear|construct|copy|create|default|delete|delete\\s+data|desc|describe|distinct|drop|explicit|filter|from|graph|group\\s+by|having|in|insert|insert\\s+data|limit|load|minus|move|named|not|offset|optional|order\\s+by|reduced|select|service|to|tt|union|using|values|where|with)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{)"
+		},
+        "function": {
+            "name": "keyword.control.sparql",
+            "match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(abs|acos|acosh|asin|asinh|atan|atan2|atanh|avg|bnode|bound|cbrt|ceil|coalesce|concat|contains|cos|cosh|count|datatype|date|date_time|date_time_stamp|day|day_time_duration|days|duration|duration_months|duration_seconds|encode_for_uri|erf|erfc|exists?|exp|exp10|exp2|floor|g_day|g_month|g_month_day|g_year_month|g_year|group_concat|gamma|hours|if|iri|isblank|isiri|isliteral|isnumeric|isuri|lang|langmatches|lcase|lgamma|log|log10|log2|max|maxfn|md5|min|minfn|minutes|month|months|mul|not\\s+exists?|now|pi|pow|rand|regex|replace|round|sameterm|sample|seconds|separator|sha1|sha256|sha384|sha512|sin|sinh|sqrt|str|strafter|strbefore|strdt|strends|strlang|strlen|strstarts|struuid|substr|sum|tan|tanh|time|time_on_timeline|timezone|to_timezone|tz|ucase|uri|uuid|year|year_month_duration|years)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{|=)"
+        },
+        "operator": {
+            "name": "support.function.sparql",
+            "match": "(?<=^|\\s|\\)|\"|'|:|>|(?:(?:[-:0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040_A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF]))|%[0-9A-Fa-f]{2}|\\\\[-_~\\.!$&'()*+,;=\\/?£@%]))(!|&&|\\|\\||<=|>=|=|<|>|!=|\\+|\\*|\\-|\\/|idiv|mod)(?=$|\\s|\\(|\"|'|:|<|([A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF]))|\\.|[0-9])"
+        },
+        "property-path-mod": {
+            "name": "support.function.sparql",
+            "match": "(?<=\\)|:|>|(?:(?:[-:0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040_A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF]))|%[0-9A-Fa-f]{2}|\\\\[-_~\\.!$&'()*+,;=\\/?£@%]))(\\?|\\*|\\+)(?=$|\\s|\\/|\\(|\\|)"
+        },
+        "property-path-symbol-unary": {
+            "name": "support.function.sparql",
+            "match": "(?<=^|\\s|\\/|!|\\(|\\||\\^)(\\^|!)(?=!|\\(|\\^|:|<|([A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF])))"
+        },
+        "property-path-symbol-binary": {
+            "name": "support.function.sparql",
+            "match": "(?<=\\)|\\?|\\+|\\*|:|>|(?:(?:[-:0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040_A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF]))|%[0-9A-Fa-f]{2}|\\\\[-_~\\.!$&'()*+,;=\\/?£@%]))(\\/|\\|)(?=!|\\(|\\^|:|<|([A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF])))"
+        },
+		"property-path-symbol": {
+			"patterns": [
+				{ "include": "#property-path-mod" },
+				{ "include": "#property-path-symbol-unary" },
+				{ "include": "#property-path-symbol-binary" }
+			]
+		}
+	}
+}

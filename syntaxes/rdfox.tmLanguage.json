@@ -1,0 +1,56 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "RDFox Shell Script",
+	"scopeName": "source.rdfox",
+	"patterns": [
+		{
+			"include": "source.n-triples#blank-node-label"
+		},
+		{
+			"include": "source.turtle#iri"
+		},
+		{
+			"include": "source.turtle#rdf-literal"
+		},
+		{
+			"include": "#keyword"
+		},
+		{
+			"include": "#operator"
+		},
+		{
+			"include": "#comment-with-line-continuation"
+		},
+		{
+			"include": "source.turtle#comment"
+		},
+		{
+			"include": "#line-continuation"
+		}
+	],
+	"repository": {
+		"keyword": {
+			"name": "keyword.control.rdfox",
+			"match": "(?i)(?<=^|\\s)(active|answer|base|begin|clear|commit|compact|daemon|dsconn|dsource|dstore|echo|endpoint|evaluate|exec|explain|export|grant|help|import|importaxioms|info|lookup|mat|password|prefix|prefixes|quit|recompilerules|remat|revoke|role|rollback|root|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|update)(?=$|\\s)"
+		},
+		"operator": {
+			"name": "support.function.rdfox",
+			"match": "(?<=^|\\s)(!|>|\\+|\\-)(?=$|\\s)"
+		},
+		"line-continuation": {
+			"name": "punctuation.definition.tag.rdfox",
+			"match": "\\\\$"
+		},
+		"comment-with-line-continuation":{
+			"match": "(#.*)(\\\\$)",
+			"captures": {
+				"1": {
+					"name": "comment.line.rdfox"
+				},
+				"2": {
+					"name": "punctuation.definition.tag.rdfox"
+				}
+			}
+		}
+	}
+}

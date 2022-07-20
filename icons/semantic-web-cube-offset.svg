@@ -1,0 +1,21 @@
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <path d="m30.7 2.17s-1.76 6.7-9.82 3.07c-1.39-0.628-1.11-0.549-1.11-0.549l-11.6 4.75 11.6 5.64s0.894-0.376 2.33-1.08c7.07-3.43 8.6-11.8 8.6-11.8zm-23.1 9.78v12l10.8 5.84v-12.4zm24 0-10.8 5.48v12.4l10.8-5.84z" fill="#86ba0c"/>
+  <metadata>
+    <rdf:RDF 
+      xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' 
+      xmlns:rdfs='http://www.w3.org/2000/01/rdf-schema#'
+      xmlns:cc='http://creativecommons.org/ns#'
+      xmlns:dc='http://purl.org/dc/elements/1.1/'>
+      <cc:Work rdf:about="">
+            <dc:title>Semantic Web cube</dc:title>
+            <dc:format>image/svg+xml</dc:format>
+        <rdfs:seeAlso rdf:resource="http://www.w3.org/2007/10/sw-logos.html"/>
+            <dc:date>2007-11-01</dc:date>
+        <cc:license rdf:resource='http://www.w3.org/Consortium/Legal/2002/copyright-documents-20021231'/>
+        <cc:morePermissions rdf:resource='http://www.w3.org/2007/10/sw-logos.html#LogoWithoutW3C'/>
+        <cc:attributionURL rdf:reource='http://www.w3.org/2001/sw/'/>
+        <dc:description>A cube whose top part is slightly peeled off</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+</svg>

@@ -1,0 +1,138 @@
+{
+    "name": "rdfox-rdf",
+    "displayName": "RDFox Syntax Highlighting",
+    "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
+    "version": "1.0.0",
+    "publisher": "rdfox",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/OxfordSemantic/vscode-rdfox-rdf.git"
+    },
+    "engines": {
+        "vscode": "^1.67.0"
+    },
+    "license": "MIT",
+    "categories": [
+        "Programming Languages"
+    ],
+    "keywords": [
+        "RDF",
+        "Graph",
+        "Graph Database",
+        "Query",
+        "OWL"
+    ],
+    "extensionKind": ["ui", "workspace"],
+    "icon": "images/icon.png",
+    "contributes": {
+        "languages": [
+            {
+                "id": "rdfox",
+                "aliases": ["RDFox Shell Script", "RDFox"],
+                "extensions": [".rdfox"],
+                "configuration": "./configuration/rdfox-language-configuration.json",
+                "icon": {
+                    "light": "./icons/rdfox-offset.svg",
+                    "dark": "./icons/rdfox-offset.svg"
+                }
+            },
+            {
+                "id": "datalog",
+                "aliases": ["Datalog", "dlog"],
+                "extensions": [".dlog", ".datalog"],
+                "configuration": "./configuration/datalog-language-configuration.json",
+                "icon": {
+                    "light": "./icons/datalog-offset.svg",
+                    "dark": "./icons/datalog-offset.svg"
+                }
+            },
+            {
+                "id": "sparql",
+                "aliases": ["SPARQL"],
+                "extensions": [".rq", ".sparql"],
+                "configuration": "./configuration/turtle-language-configuration.json",
+                "icon": {
+                    "light": "./icons/sparql-light-offset.svg",
+                    "dark": "./icons/sparql-dark-offset.svg"
+                }
+            },
+            {
+                "id": "n-triples",
+                "aliases": ["N-Triples", "nt"],
+                "extensions": [".nt"],
+                "configuration": "./configuration/turtle-language-configuration.json",
+                "icon": {
+                    "light": "./icons/semantic-web-cube-offset.svg",
+                    "dark": "./icons/semantic-web-cube-offset.svg"
+                }
+            },
+            {
+                "id": "n-quads",
+                "aliases": ["N-Quads", "nq"],
+                "extensions": [".nq"],
+                "configuration": "./configuration/turtle-language-configuration.json",
+                "icon": {
+                    "light": "./icons/semantic-web-cube-offset.svg",
+                    "dark": "./icons/semantic-web-cube-offset.svg"
+                }
+            },
+            {
+                "id": "turtle",
+                "aliases": ["Turtle", "ttl"],
+                "extensions": [".ttl"],
+                "configuration": "./configuration/turtle-language-configuration.json",
+                "icon": {
+                    "light": "./icons/semantic-web-cube-offset.svg",
+                    "dark": "./icons/semantic-web-cube-offset.svg"
+                }
+            },
+            {
+                "id": "trig",
+                "aliases": ["TriG"],
+                "extensions": [".trig"],
+                "configuration": "./configuration/turtle-language-configuration.json",
+                "icon": {
+                    "light": "./icons/semantic-web-cube-offset.svg",
+                    "dark": "./icons/semantic-web-cube-offset.svg"
+                }
+            }
+        ],
+        "grammars": [
+            {
+                "language": "rdfox",
+                "scopeName": "source.rdfox",
+                "path": "./syntaxes/rdfox.tmLanguage.json"
+            },
+            {
+                "language": "datalog",
+                "scopeName": "source.datalog",
+                "path": "./syntaxes/datalog.tmLanguage.json"
+            },
+            {
+                "language": "sparql",
+                "scopeName": "source.sparql",
+                "path": "./syntaxes/sparql.tmLanguage.json"
+            },
+            {
+                "language": "n-triples",
+                "scopeName": "source.n-triples",
+                "path": "./syntaxes/n-triples.tmLanguage.json"
+            },
+            {
+                "language": "n-quads",
+                "scopeName": "source.n-quads",
+                "path": "./syntaxes/n-quads.tmLanguage.json"
+            },
+            {
+                "language": "turtle",
+                "scopeName": "source.turtle",
+                "path": "./syntaxes/turtle.tmLanguage.json"
+            },
+            {
+                "language": "trig",
+                "scopeName": "source.trig",
+                "path": "./syntaxes/trig.tmLanguage.json"
+            }
+        ]
+    }
+}
