@@ -19,6 +19,6 @@ This VSCode extension will automatically recognize and provide highlighting for 
 
 ## License
 
-MIT, Copyright (c) 2022 Oxford Semantic Technologies (see `LICENSE` file)
+MIT, Copyright (c) 2022 Oxford Semantic Technologies (see [LICENSE](https://github.com/OxfordSemantic/vscode-rdfox-rdf/blob/main/LICENSE) file)
 
 The Semantic Web cube logo belongs to W3C (licensing described [here](https://www.w3.org/2007/10/sw-logos.html))
