@@ -16,13 +16,22 @@
 			"include": "#keyword"
 		},
 		{
+			"include": "#echo-command"
+		},
+		{
+			"include": "#grant-command"
+		},
+		{
+			"include": "#query-keyword"
+		},
+		{
 			"include": "#operator"
 		},
 		{
 			"include": "#comment-with-line-continuation"
 		},
 		{
-			"include": "source.turtle#comment"
+			"include": "#comment"
 		},
 		{
 			"include": "#line-continuation"
@@ -31,7 +40,35 @@
 	"repository": {
 		"keyword": {
 			"name": "keyword.control.rdfox",
-			"match": "(?i)(?<=^|\\s)(active|answer|base|begin|clear|commit|compact|daemon|dsconn|dsource|dstore|echo|endpoint|evaluate|exec|explain|export|grant|help|import|importaxioms|info|lookup|mat|password|prefix|prefixes|quit|recompilerules|remat|revoke|role|rollback|root|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|update)(?=$|\\s)"
+			"match": "(?i)(?<=^\\s*)(active|answer|base|begin|clear|commit|compact|daemon|dsconn|dsource|dstore|endpoint|evaluate|exec|explain|export|help|import|importaxioms|info|lookup|mat|password|prefix|prefixes|quit|recompilerules|remat|revoke|role|rollback|root|serverinfo|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|update)(?=$|\\s)"
+		},
+		"query-keyword": {
+			"name": "keyword.control.rdfox",
+			"match": "(?i)(?<=^\\s*)(select|construct|ask|insert|delete)(?=$|\\s)"
+		},
+		"echo-command": {
+			"begin": "(?i)(?<=^\\s*)(echo)",
+			"end": "(?<!\\\\)$",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.rdfox" }
+			},
+			"patterns": [
+				{ "include": "#comment-with-line-continuation" },
+				{ "include": "#comment" },
+				{ "include": "#line-continuation" }
+			]
+		},
+		"grant-command": {
+			"begin": "(?i)(?<=^\\s*)(grant)",
+			"end": "(?<!\\\\)$",
+			"beginCaptures": {
+				"1": { "name": "keyword.control.rdfox" }
+			},
+			"patterns": [
+				{ "include": "#comment-with-line-continuation" },
+				{ "include": "#comment" },
+				{ "include": "#line-continuation" }
+			]
 		},
 		"operator": {
 			"name": "support.function.rdfox",
@@ -39,10 +76,14 @@
 		},
 		"line-continuation": {
 			"name": "punctuation.definition.tag.rdfox",
-			"match": "\\\\$"
+			"match": "\\\\(?=$)"
+		},
+		"comment": {
+			"name": "comment.line.rdfox",
+			"match": "(?<=^|\\s)#.*(?=$)"
 		},
 		"comment-with-line-continuation":{
-			"match": "(#.*)(\\\\$)",
+			"match": "(?<=^|\\s)(#.*)(\\\\)(?=$)",
 			"captures": {
 				"1": {
 					"name": "comment.line.rdfox"
