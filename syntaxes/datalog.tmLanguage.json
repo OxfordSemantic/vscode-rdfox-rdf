@@ -19,9 +19,6 @@
 			"include": "source.turtle#literal"
 		},
 		{
-			"include": "source.sparql#keyword"
-		},
-		{
 			"include": "#keyword"
 		},
 		{
@@ -44,7 +41,7 @@
 		},
 		"keyword": {
 			"name": "keyword.control.datalog",
-			"match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(aggregate|on)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{)"
+			"match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(aggregate|as|bind|filter|in|not|not\\s+exists?|on)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{)"
 		}
 	}
 }
