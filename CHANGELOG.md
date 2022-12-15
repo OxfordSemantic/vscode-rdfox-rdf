@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4 (15 December 2022)
+- Fix highlighting of single-quoted literals with double quotes inside ([Issue #4](https://github.com/OxfordSemantic/vscode-rdfox-rdf/issues/4))
+
 ## 1.0.3 (23 November 2022)
 - Account for RDFox 6.0 syntax
 - Fix highlighting of prefixed IRIs with escaped "#"
