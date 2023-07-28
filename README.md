@@ -2,6 +2,8 @@
 
 This extension provides syntax highlighting for RDF languages (SPARQL, Turtle, N-Triples and N-Quads), Datalog rules and [RDFox](https://www.oxfordsemantic.tech/product) shell scripts.
 
+It also provides command reference for RDFox shell scripts. To view the description of an RDFox command, simply hover over it.
+
 ![Turtle highlighting example](images/example.png "Turtle highlighting example")
 
 ## Features

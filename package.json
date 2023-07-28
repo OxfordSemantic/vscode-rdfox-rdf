@@ -2,14 +2,17 @@
     "name": "rdfox-rdf",
     "displayName": "RDFox Syntax Highlighting",
     "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
-    "version": "1.0.4",
+    "version": "1.1.0",
     "publisher": "rdfox",
     "repository": {
         "type": "git",
         "url": "https://github.com/OxfordSemantic/vscode-rdfox-rdf.git"
     },
     "engines": {
-        "vscode": "^1.67.0"
+        "vscode": "^1.62.0"
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc"
     },
     "license": "MIT",
     "categories": [
@@ -22,14 +25,26 @@
         "Query",
         "OWL"
     ],
-    "extensionKind": ["ui", "workspace"],
+    "extensionKind": [
+        "ui",
+        "workspace"
+    ],
     "icon": "images/icon.png",
+    "main": "./out/extension.js",
+    "activationEvents": [
+        "onLanguage:rdfox"
+    ],
     "contributes": {
         "languages": [
             {
                 "id": "rdfox",
-                "aliases": ["RDFox Shell Script", "RDFox"],
-                "extensions": [".rdfox"],
+                "aliases": [
+                    "RDFox Shell Script",
+                    "RDFox"
+                ],
+                "extensions": [
+                    ".rdfox"
+                ],
                 "configuration": "./configuration/rdfox-language-configuration.json",
                 "icon": {
                     "light": "./icons/rdfox-offset.svg",
@@ -38,8 +53,14 @@
             },
             {
                 "id": "datalog",
-                "aliases": ["Datalog", "dlog"],
-                "extensions": [".dlog", ".datalog"],
+                "aliases": [
+                    "Datalog",
+                    "dlog"
+                ],
+                "extensions": [
+                    ".dlog",
+                    ".datalog"
+                ],
                 "configuration": "./configuration/datalog-language-configuration.json",
                 "icon": {
                     "light": "./icons/datalog-offset.svg",
@@ -48,8 +69,13 @@
             },
             {
                 "id": "sparql",
-                "aliases": ["SPARQL"],
-                "extensions": [".rq", ".sparql"],
+                "aliases": [
+                    "SPARQL"
+                ],
+                "extensions": [
+                    ".rq",
+                    ".sparql"
+                ],
                 "configuration": "./configuration/turtle-language-configuration.json",
                 "icon": {
                     "light": "./icons/sparql-light-offset.svg",
@@ -58,8 +84,13 @@
             },
             {
                 "id": "n-triples",
-                "aliases": ["N-Triples", "nt"],
-                "extensions": [".nt"],
+                "aliases": [
+                    "N-Triples",
+                    "nt"
+                ],
+                "extensions": [
+                    ".nt"
+                ],
                 "configuration": "./configuration/turtle-language-configuration.json",
                 "icon": {
                     "light": "./icons/semantic-web-cube-offset.svg",
@@ -68,8 +99,13 @@
             },
             {
                 "id": "n-quads",
-                "aliases": ["N-Quads", "nq"],
-                "extensions": [".nq"],
+                "aliases": [
+                    "N-Quads",
+                    "nq"
+                ],
+                "extensions": [
+                    ".nq"
+                ],
                 "configuration": "./configuration/turtle-language-configuration.json",
                 "icon": {
                     "light": "./icons/semantic-web-cube-offset.svg",
@@ -78,8 +114,13 @@
             },
             {
                 "id": "turtle",
-                "aliases": ["Turtle", "ttl"],
-                "extensions": [".ttl"],
+                "aliases": [
+                    "Turtle",
+                    "ttl"
+                ],
+                "extensions": [
+                    ".ttl"
+                ],
                 "configuration": "./configuration/turtle-language-configuration.json",
                 "icon": {
                     "light": "./icons/semantic-web-cube-offset.svg",
@@ -88,8 +129,12 @@
             },
             {
                 "id": "trig",
-                "aliases": ["TriG"],
-                "extensions": [".trig"],
+                "aliases": [
+                    "TriG"
+                ],
+                "extensions": [
+                    ".trig"
+                ],
                 "configuration": "./configuration/turtle-language-configuration.json",
                 "icon": {
                     "light": "./icons/semantic-web-cube-offset.svg",
@@ -134,5 +179,10 @@
                 "path": "./syntaxes/trig.tmLanguage.json"
             }
         ]
+    },
+    "devDependencies": {
+        "@types/node": "^20.4.0",
+        "@types/vscode": "^1.62.0",
+        "typescript": "^5.1.6"
     }
 }

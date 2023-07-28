@@ -40,7 +40,7 @@
 	"repository": {
 		"keyword": {
 			"name": "keyword.control.rdfox",
-			"match": "(?i)(?<=^\\s*)(active|answer|base|begin|clear|commit|compact|daemon|dsconn|dsource|dstore|endpoint|evaluate|exec|explain|export|help|import|importaxioms|info|lookup|mat|password|prefix|prefixes|quit|recompilerules|remat|revoke|role|rollback|root|serverinfo|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|update)(?=$|\\s)"
+			"match": "(?i)(?<=^\\s*)(active|answer|base|begin|clear|commit|commitproc|compact|daemon|dsconn|dsource|dstore|endpoint|evaluate|exec|explain|export|help|import|importaxioms|info|mat|maxmemory|password|prefix|prefixes|quit|recompile|remat|revoke|role|rollback|root|rwtest|serverinfo|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|unset|update)(?=$|\\s)"
 		},
 		"query-keyword": {
 			"name": "keyword.control.rdfox",
@@ -76,14 +76,14 @@
 		},
 		"line-continuation": {
 			"name": "punctuation.definition.tag.rdfox",
-			"match": "\\\\(?=$)"
+			"match": "\\\\(?=\\s*$)"
 		},
 		"comment": {
 			"name": "comment.line.rdfox",
 			"match": "(?<=^|\\s)#.*(?=$)"
 		},
 		"comment-with-line-continuation":{
-			"match": "(?<=^|\\s)(#.*)(\\\\)(?=$)",
+			"match": "(?<=^|\\s)(#.*)(\\\\)(?=\\s*$)",
 			"captures": {
 				"1": {
 					"name": "comment.line.rdfox"

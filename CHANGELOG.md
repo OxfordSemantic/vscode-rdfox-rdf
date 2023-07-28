@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 (28 July 2023)
+- Add hover functionality for command documentation in RDFox shell scripts
+- Fix highlighting of line continuation symbol when followed by whitespace in RDFox shell scripts
+- Update commands highlighted in RDFox shell scripts for RDFox 6.3
+
 ## 1.0.4 (15 December 2022)
 - Fix highlighting of single-quoted literals with double quotes inside ([Issue #4](https://github.com/OxfordSemantic/vscode-rdfox-rdf/issues/4))
 
