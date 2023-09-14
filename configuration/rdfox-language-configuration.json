@@ -43,5 +43,5 @@
             "beforeText": "^(.*[^\\\\])\\s*$",
             "action": { "indent": "outdent" }
         }
-      ]
+    ]
 }

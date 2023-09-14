@@ -1,0 +1,335 @@
+{
+    "ABS": {
+        "snippetEnd": "($0)"
+    },
+    "ACOS": {
+        "snippetEnd": "($0)"
+    },
+    "ACOSH": {
+        "snippetEnd": "($0)"
+    },
+    "ASIN": {
+        "snippetEnd": "($0)"
+    },
+    "ASINH": {
+        "snippetEnd": "($0)"
+    },
+    "ATAN": {
+        "snippetEnd": "($0)"
+    },
+    "ATAN2": {
+        "snippetEnd": "($0)"
+    },
+    "ATANH": {
+        "snippetEnd": "($0)"
+    },
+    "AVG": {
+        "snippetEnd": "($0)"
+    },
+    "BNODE": {
+        "snippetEnd": "($0)"
+    },
+    "BOUND": {
+        "snippetEnd": "($0)"
+    },
+    "CBRT": {
+        "snippetEnd": "($0)"
+    },
+    "CEIL": {
+        "snippetEnd": "($0)"
+    },
+    "COALESCE": {
+        "snippetEnd": "($0)"
+    },
+    "CONCAT": {
+        "snippetEnd": "($0)"
+    },
+    "CONTAINS": {
+        "snippetEnd": "($0)"
+    },
+    "COS": {
+        "snippetEnd": "($0)"
+    },
+    "COSH": {
+        "snippetEnd": "($0)"
+    },
+    "COUNT": {
+        "snippetEnd": "($0)"
+    },
+    "DATATYPE": {
+        "snippetEnd": "($0)"
+    },
+    "DATE": {
+        "snippetEnd": "($0)"
+    },
+    "DATE_TIME": {
+        "snippetEnd": "($0)"
+    },
+    "DATE_TIME_STAMP": {
+        "snippetEnd": "($0)"
+    },
+    "DAY": {
+        "snippetEnd": "($0)"
+    },
+    "DAY_TIME_DURATION": {
+        "snippetEnd": "($0)"
+    },
+    "DAYS": {
+        "snippetEnd": "($0)"
+    },
+    "DURATION": {
+        "snippetEnd": "($0)"
+    },
+    "DURATION_MONTHS": {
+        "snippetEnd": "($0)"
+    },
+    "DURATION_SECONDS": {
+        "snippetEnd": "($0)"
+    },
+    "ENCODE_FOR_URI": {
+        "snippetEnd": "($0)"
+    },
+    "ERF": {
+        "snippetEnd": "($0)"
+    },
+    "ERFC": {
+        "snippetEnd": "($0)"
+    },
+    "EXISTS?": {
+        "snippetEnd": "($0)"
+    },
+    "EXP": {
+        "snippetEnd": "($0)"
+    },
+    "EXP10": {
+        "snippetEnd": "($0)"
+    },
+    "EXP2": {
+        "snippetEnd": "($0)"
+    },
+    "FLOOR": {
+        "snippetEnd": "($0)"
+    },
+    "G_DAY": {
+        "snippetEnd": "($0)"
+    },
+    "G_MONTH": {
+        "snippetEnd": "($0)"
+    },
+    "G_MONTH_DAY": {
+        "snippetEnd": "($0)"
+    },
+    "G_YEAR_MONTH": {
+        "snippetEnd": "($0)"
+    },
+    "G_YEAR": {
+        "snippetEnd": "($0)"
+    },
+    "GROUP_CONCAT": {
+        "snippetEnd": "($0)"
+    },
+    "GAMMA": {
+        "snippetEnd": "($0)"
+    },
+    "HOURS": {
+        "snippetEnd": "($0)"
+    },
+    "IF": {
+        "snippetEnd": "($0)"
+    },
+    "IRI": {
+        "snippetEnd": "($0)"
+    },
+    "ISBLANK": {
+        "snippetEnd": "($0)"
+    },
+    "ISIRI": {
+        "snippetEnd": "($0)"
+    },
+    "ISLITERAL": {
+        "snippetEnd": "($0)"
+    },
+    "ISNUMERIC": {
+        "snippetEnd": "($0)"
+    },
+    "ISURI": {
+        "snippetEnd": "($0)"
+    },
+    "LANG": {
+        "snippetEnd": "($0)"
+    },
+    "LANGMATCHES": {
+        "snippetEnd": "($0)"
+    },
+    "LCASE": {
+        "snippetEnd": "($0)"
+    },
+    "LGAMMA": {
+        "snippetEnd": "($0)"
+    },
+    "LOG": {
+        "snippetEnd": "($0)"
+    },
+    "LOG10": {
+        "snippetEnd": "($0)"
+    },
+    "LOG2": {
+        "snippetEnd": "($0)"
+    },
+    "MAX": {
+        "snippetEnd": "($0)"
+    },
+    "MAXFN": {
+        "snippetEnd": "($0)"
+    },
+    "MD5": {
+        "snippetEnd": "($0)"
+    },
+    "MIN": {
+        "snippetEnd": "($0)"
+    },
+    "MINFN": {
+        "snippetEnd": "($0)"
+    },
+    "MINUTES": {
+        "snippetEnd": "($0)"
+    },
+    "MONTH": {
+        "snippetEnd": "($0)"
+    },
+    "MONTHS": {
+        "snippetEnd": "($0)"
+    },
+    "MUL": {
+        "snippetEnd": "($0)"
+    },
+    "NOW": {
+        "snippetEnd": "()"
+    },
+    "PI": {
+        "snippetEnd": "($0)"
+    },
+    "POW": {
+        "snippetEnd": "($0)"
+    },
+    "RAND": {
+        "snippetEnd": "()"
+    },
+    "REGEX": {
+        "snippetEnd": "($0)"
+    },
+    "REPLACE": {
+        "snippetEnd": "($0)"
+    },
+    "ROLE": {
+        "snippetEnd": "($0)"
+    },
+    "ROUND": {
+        "snippetEnd": "($0)"
+    },
+    "SAMETERM": {
+        "snippetEnd": "($0)"
+    },
+    "SAMPLE": {
+        "snippetEnd": "($0)"
+    },
+    "SECONDS": {
+        "snippetEnd": "($0)"
+    },
+    "SEPARATOR": {
+        "snippetEnd": "($0)"
+    },
+    "SHA1": {
+        "snippetEnd": "($0)"
+    },
+    "SHA256": {
+        "snippetEnd": "($0)"
+    },
+    "SHA384": {
+        "snippetEnd": "($0)"
+    },
+    "SHA512": {
+        "snippetEnd": "($0)"
+    },
+    "SIN": {
+        "snippetEnd": "($0)"
+    },
+    "SINH": {
+        "snippetEnd": "($0)"
+    },
+    "SQRT": {
+        "snippetEnd": "($0)"
+    },
+    "STR": {
+        "snippetEnd": "($0)"
+    },
+    "STRAFTER": {
+        "snippetEnd": "($0)"
+    },
+    "STRBEFORE": {
+        "snippetEnd": "($0)"
+    },
+    "STRDT": {
+        "snippetEnd": "($0)"
+    },
+    "STRENDS": {
+        "snippetEnd": "($0)"
+    },
+    "STRLANG": {
+        "snippetEnd": "($0)"
+    },
+    "STRLEN": {
+        "snippetEnd": "($0)"
+    },
+    "STRSTARTS": {
+        "snippetEnd": "($0)"
+    },
+    "STRUUID": {
+        "snippetEnd": "($0)"
+    },
+    "SUBSTR": {
+        "snippetEnd": "($0)"
+    },
+    "SUM": {
+        "snippetEnd": "($0)"
+    },
+    "TAN": {
+        "snippetEnd": "($0)"
+    },
+    "TANH": {
+        "snippetEnd": "($0)"
+    },
+    "TIME": {
+        "snippetEnd": "($0)"
+    },
+    "TIME_ON_TIMELINE": {
+        "snippetEnd": "($0)"
+    },
+    "TIMEZONE": {
+        "snippetEnd": "($0)"
+    },
+    "TO_TIMEZONE": {
+        "snippetEnd": "($0)"
+    },
+    "TZ": {
+        "snippetEnd": "($0)"
+    },
+    "UCASE": {
+        "snippetEnd": "($0)"
+    },
+    "URI": {
+        "snippetEnd": "($0)"
+    },
+    "UUID": {
+        "snippetEnd": "($0)"
+    },
+    "YEAR": {
+        "snippetEnd": "($0)"
+    },
+    "YEAR_MONTH_DURATION": {
+        "snippetEnd": "($0)"
+    },
+    "YEARS": {
+        "snippetEnd": "($0)"
+    }    
+}

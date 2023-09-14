@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.0 (14 September 2023)
+- Add autocompletion and help text for RDFox commands
+- Add autocompletion for SPARQL functions
+- Add button to open a query in RDFox console
+- Add buttons to add/delete a Datalog rule
+- Add settings that determine an RDFox datastore to target with the above
+- Add configuration defaults for better word-based autocompletion when working with RDF data
+- Update SPARQL functions for RDFox 6.3
+
 ## 1.1.0 (28 July 2023)
 - Add hover functionality for command documentation in RDFox shell scripts
 - Fix highlighting of line continuation symbol when followed by whitespace in RDFox shell scripts

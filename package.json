@@ -2,7 +2,7 @@
     "name": "rdfox-rdf",
     "displayName": "RDFox Syntax Highlighting",
     "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "publisher": "rdfox",
     "repository": {
         "type": "git",
@@ -32,7 +32,17 @@
     "icon": "images/icon.png",
     "main": "./out/extension.js",
     "activationEvents": [
-        "onLanguage:rdfox"
+        "onLanguage:rdfox",
+        "onLanguage:sparql",
+        "onLanguage:datalog",
+        "onLanguage:turtle",
+        "onLanguage:trig",
+        "onLanguage:n-triples",
+        "onLanguage:n-quads",
+        "onCommand:rdfox-rdf.open-in-console",
+        "onCommand:rdfox-rdf.upload-rule",
+        "onCommand:rdfox-rdf.delete-rule",
+        "onCommand:rdfox-rdf.open-settings"
     ],
     "contributes": {
         "languages": [
@@ -178,11 +188,104 @@
                 "scopeName": "source.trig",
                 "path": "./syntaxes/trig.tmLanguage.json"
             }
-        ]
+        ],
+        "commands": [
+            {
+                "command": "rdfox-rdf.open-in-console",
+                "title": "Open in RDFox Web Console",
+                "shortTitle": "Open in Console",
+                "icon": "./icons/open-in-console.svg"
+            },
+            {
+                "command": "rdfox-rdf.upload-rule",
+                "title": "Upload Datalog rule to RDFox",
+                "shortTitle": "Upload rule",
+                "icon": "./icons/upload-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.delete-rule",
+                "title": "Delete Datalog rule from RDFox",
+                "shortTitle": "Delete rule",
+                "icon": "./icons/delete-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.open-settings",
+                "title": "Open RDFox extension settings",
+                "icon": "./icons/extension-settings.svg"
+            }
+        ],
+        "configuration": {
+            "title": "RDFox Syntax Highlighting",
+            "properties": {
+                "RDFox.URL": {
+                    "type": "string",
+                    "default": "http://localhost:12110",
+                    "description": "URL of the RDFox endpoint"
+                },
+                "RDFox.datastoreName": {
+                    "type": "string",
+                    "default": "default",
+                    "description": "Name of the RDFox datastore"
+                }
+            }
+        },
+        "configurationDefaults": {
+            "[rdfox]": {
+                "editor.wordBasedSuggestionsMode": "allDocuments"
+            },
+            "[datalog]": {
+                "editor.wordBasedSuggestionsMode": "allDocuments"
+            },
+            "[sparql]": {
+                "editor.wordBasedSuggestionsMode": "allDocuments"
+            },
+            "[turtle]": {
+                "editor.wordBasedSuggestionsMode": "allDocuments"
+            },
+            "[trig]": {
+                "editor.wordBasedSuggestionsMode": "allDocuments"
+            },
+            "[n-triples]": {
+                "editor.wordBasedSuggestionsMode": "allDocuments"
+            },
+            "[n-quads]": {
+                "editor.wordBasedSuggestionsMode": "allDocuments"
+            }
+        },
+        "menus": {
+            "editor/title": [
+                {
+                    "command": "rdfox-rdf.open-in-console",
+                    "group": "navigation@1",
+                    "when": "editorLangId == sparql"
+                },
+                {
+                    "command": "rdfox-rdf.upload-rule",
+                    "group": "navigation@1",
+                    "when": "editorLangId == datalog"
+                },
+                {
+                    "command": "rdfox-rdf.delete-rule",
+                    "group": "navigation@2",
+                    "when": "editorLangId == datalog"
+                },
+                {
+                    "command": "rdfox-rdf.open-settings",
+                    "group": "navigation@3",
+                    "when": "editorLangId == datalog || editorLangId == sparql"
+                }
+            ]
+        }
     },
     "devDependencies": {
         "@types/node": "^20.4.0",
+        "@types/node-fetch": "^2.6.4",
+        "@types/uuid": "^9.0.2",
         "@types/vscode": "^1.62.0",
         "typescript": "^5.1.6"
+    },
+    "dependencies": {
+        "node-fetch": "^2.6.12",
+        "uuid": "^9.0.0"
     }
 }
