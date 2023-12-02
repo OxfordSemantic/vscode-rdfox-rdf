@@ -21,19 +21,20 @@ export class TurtleDefinitionProvider implements DefinitionProvider {
 const definitionRegex = (str: string) => new RegExp(`(?<=\\.\\s*)\\b${str}\\b`, 'g')
 
 async function findTurtleDocuments(): Promise<TextDocument[]> {
-    const folders = workspace.workspaceFolders;
+    const folders = workspace.workspaceFolders
     if (!folders) {
-        return [];
+        return []
     }
 
-    const files: Uri[] = [];
+    const files: Uri[] = []
     for (const folder of folders) {
-        const folderFiles = await workspace.findFiles(new RelativePattern(folder, '**/*.ttl'));
-        files.push(...folderFiles);
+        const pattern = new RelativePattern(folder, '**/*.ttl')
+        const folderFiles = await workspace.findFiles(pattern)
+        files.push(...folderFiles)
     }
 
-    const documentPromises = files.map(async file => await workspace.openTextDocument(file));
-    return await Promise.all(documentPromises);
+    const documentPromises = files.map(async file => await workspace.openTextDocument(file))
+    return await Promise.all(documentPromises)
 }
 
 function findMatchInDocument(doc: TextDocument, regex: RegExp): MatchLocation {
@@ -46,7 +47,7 @@ function findMatchInDocument(doc: TextDocument, regex: RegExp): MatchLocation {
 
     const textBeforeMatch = text.substring(0, match.index)
     const lineNumber = textBeforeMatch.match(/\n/g)?.length || 0
-    
+
     const symbol = match[0]
     const startIndex = doc.lineAt(lineNumber).text.indexOf(symbol)
     if (startIndex === -1) {
