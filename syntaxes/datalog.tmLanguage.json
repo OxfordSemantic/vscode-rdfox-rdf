@@ -31,6 +31,9 @@
 			"include": "source.sparql#operator"
 		},
 		{
+			"include": "source.sparql#built-in-table"
+		},
+		{
 			"include": "source.turtle#comment"
 		}
 	],

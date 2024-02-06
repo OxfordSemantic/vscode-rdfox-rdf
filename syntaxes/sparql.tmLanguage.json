@@ -25,6 +25,9 @@
             "include": "#operator"
         },
         {
+            "include": "#built-in-table"
+        },
+        {
             "include": "#property-path-symbol"
         },
 		{
@@ -42,7 +45,7 @@
 		},
         "function": {
             "name": "keyword.control.sparql",
-            "match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(abs|acos|acosh|asin|asinh|atan|atan2|atanh|avg|bnode|bound|cbrt|ceil|coalesce|concat|contains|cos|cosh|count|datatype|date|date_time|date_time_stamp|day|day_time_duration|days|duration|duration_months|duration_seconds|encode_for_uri|erf|erfc|exists?|exp|exp10|exp2|floor|g_day|g_month|g_month_day|g_year_month|g_year|group_concat|gamma|hours|if|iri|isblank|isiri|isliteral|isnumeric|isuri|lang|langmatches|lcase|lgamma|log|log10|log2|max|maxfn|md5|min|minfn|minutes|month|months|mul|not\\s+exists?|now|pi|pow|rand|regex|replace|role|round|sameterm|sample|seconds|separator|sha1|sha256|sha384|sha512|sin|sinh|sqrt|str|strafter|strbefore|strdt|strends|strlang|strlen|strstarts|struuid|substr|sum|tan|tanh|time|time_on_timeline|timezone|to_timezone|tz|ucase|uri|uuid|year|year_month_duration|years)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{|=)"
+            "match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\}|!|=|,)(abs|acos|acosh|asin|asinh|atan|atan2|atanh|avg|bnode|bound|cbrt|ceil|coalesce|concat|contains|cos|cosh|count|count_max|count_min|datatype|date|date_time|date_time_stamp|day|day_time_duration|days|duration|duration_months|duration_seconds|encode_for_uri|erf|erfc|exists?|exp|exp10|exp2|floor|g_day|g_month|g_month_day|g_year_month|g_year|group_concat|gamma|hours|if|iri|isblank|isiri|isliteral|isnumeric|isuri|lang|langmatches|lcase|lgamma|log|log10|log2|max|max_argmax|max_argmin|maxfn|md5|min|min_argmax|min_argmin|minfn|minutes|month|months|mul|not\\s+exists?|now|pi|pow|rand|regex|replace|role|round|sameterm|sample|sample_argmin|sample_argmax|seconds|separator|sha1|sha256|sha384|sha512|sin|sinh|sqrt|str|strafter|strbefore|strdt|strends|strlang|strlen|strstarts|struuid|substr|sum|tan|tanh|time|time_on_timeline|timezone|to_timezone|tz|ucase|uri|uuid|year|year_month_duration|years)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{|=)"
         },
         "operator": {
             "patterns": [
@@ -52,7 +55,7 @@
         },
         "word-operator": {
             "name": "support.function.sparql",
-            "match": "(?<=^|\\s|\\))(idiv|mod)(?=$|\\s|\\()"
+            "match": "(?i)(?<=^|\\s|\\))(idiv|mod)(?=$|\\s|\\()"
         },
         "symbol-operator": {
             "name": "support.function.sparql",
@@ -76,6 +79,10 @@
 				{ "include": "#property-path-symbol-unary" },
 				{ "include": "#property-path-symbol-binary" }
 			]
-		}
+		},
+        "built-in-table" : {
+            "name": "storage.modifier.sparql",
+            "match": "(?<=^|\\s)(SKOLEM|SHACL|SHACL_NN|SHACL_ND|SHACL_DN|SHACL_DD|DependencyGraph|DependencyGraph_N|DependencyGraph_D)(?=$|\\s|\\(|\\{)"
+        }
 	}
 }

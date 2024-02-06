@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0 (6 February 2024)
+- Add highlighting for RDFox built-in tuple tables
+- Improve highlighting of function names directly preceded by '!'
+- Improve autocompletion for GROUP_CONCAT
+- Update SPARQL functions and RDFox commands for RDFox 7.0
+
 ## 1.2.0 (14 September 2023)
 - Add autocompletion and help text for RDFox commands
 - Add autocompletion for SPARQL functions

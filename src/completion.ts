@@ -35,12 +35,12 @@ export class RDFoxCompletionProvider implements vscode.CompletionItemProvider {
 
         return Object.entries(this.commandMap).flatMap(([command, details]) => {
             const wordRegExp = new RegExp("^" + word + ".*", "i")
-            if(wordRegExp.test(command)) {
+            if(wordRegExp.test(command) && details.helpText) {
                 const completion = new vscode.CompletionItem(details.displayName)
                 completion.documentation = new vscode.MarkdownString(
                     "RDFox command - " +
                     details.helpText +
-                    `\n[[docs](${details.link})]`
+                    (details.link ? `\n[[docs](${details.link})]` : "")
                 )
                 completion.kind = vscode.CompletionItemKind.Keyword
                 return [completion]
@@ -78,7 +78,7 @@ export class FunctionCompletionProvider implements vscode.CompletionItemProvider
             if(wordRegExp.test(functionName)) {
                 const nextPosition = document.validatePosition(position.translate(0, 1))
                 const followedByBracket = (document.getText(new vscode.Range(position, nextPosition)) == "(")
-                const completion = new vscode.CompletionItem(functionName + (followedByBracket ? "" : "()"), vscode.CompletionItemKind.Function)
+                const completion = new vscode.CompletionItem(functionName + (followedByBracket ? "" : (functionName != "SEPARATOR" ? "()" : "=")), vscode.CompletionItemKind.Function)
                 completion.filterText = functionName
                 completion.insertText = new vscode.SnippetString(functionName + (followedByBracket ? "" : this.functionMap[functionName]["snippetEnd"]))
                 return [completion]

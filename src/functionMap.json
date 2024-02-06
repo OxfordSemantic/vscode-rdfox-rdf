@@ -56,6 +56,12 @@
     "COUNT": {
         "snippetEnd": "($0)"
     },
+    "COUNT_MAX": {
+        "snippetEnd": "($0)"
+    },
+    "COUNT_MIN": {
+        "snippetEnd": "($0)"
+    },
     "DATATYPE": {
         "snippetEnd": "($0)"
     },
@@ -126,7 +132,7 @@
         "snippetEnd": "($0)"
     },
     "GROUP_CONCAT": {
-        "snippetEnd": "($0)"
+        "snippetEnd": "($0 ; SEPARATOR=\" \")"
     },
     "GAMMA": {
         "snippetEnd": "($0)"
@@ -179,6 +185,12 @@
     "MAX": {
         "snippetEnd": "($0)"
     },
+    "MAX_ARGMAX": {
+        "snippetEnd": "($1, $0)"
+    },
+    "MAX_ARGMIN": {
+        "snippetEnd": "($1, $0)"
+    },
     "MAXFN": {
         "snippetEnd": "($0)"
     },
@@ -187,6 +199,12 @@
     },
     "MIN": {
         "snippetEnd": "($0)"
+    },
+    "MIN_ARGMAX": {
+        "snippetEnd": "($1, $0)"
+    },
+    "MIN_ARGMIN": {
+        "snippetEnd": "($1, $0)"
     },
     "MINFN": {
         "snippetEnd": "($0)"
@@ -222,7 +240,7 @@
         "snippetEnd": "($0)"
     },
     "ROLE": {
-        "snippetEnd": "($0)"
+        "snippetEnd": "()"
     },
     "ROUND": {
         "snippetEnd": "($0)"
@@ -233,11 +251,17 @@
     "SAMPLE": {
         "snippetEnd": "($0)"
     },
+    "SAMPLE_ARGMAX": {
+        "snippetEnd": "($1, $0)"
+    },
+    "SAMPLE_ARGMIN": {
+        "snippetEnd": "($1, $0)"
+    },
     "SECONDS": {
         "snippetEnd": "($0)"
     },
     "SEPARATOR": {
-        "snippetEnd": "($0)"
+        "snippetEnd": "=\"$0\""
     },
     "SHA1": {
         "snippetEnd": "($0)"

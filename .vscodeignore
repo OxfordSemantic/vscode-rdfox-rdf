@@ -1,4 +1,10 @@
-.vscode/**
-.vscode-test/**
+node_modules
+*.vsix
+
+.DS_Store
+
+test
+src
+.vscode
+.vscode-test
 .gitignore
-src/**
