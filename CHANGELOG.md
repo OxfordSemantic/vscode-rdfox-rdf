@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.1 (8 February 2024)
+- Fix extension build to include dependencies
+
 ## 1.3.0 (6 February 2024)
 - Add highlighting for RDFox built-in tuple tables
 - Improve highlighting of function names directly preceded by '!'
