@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.2 (9 February 2024)
+- Update configuration defaults to match new setting names in VS Code
+
 ## 1.3.1 (8 February 2024)
 - Fix extension build to include dependencies
 

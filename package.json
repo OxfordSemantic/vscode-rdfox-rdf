@@ -2,7 +2,7 @@
     "name": "rdfox-rdf",
     "displayName": "RDFox Syntax Highlighting",
     "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "publisher": "rdfox",
     "repository": {
         "type": "git",
@@ -231,25 +231,25 @@
         },
         "configurationDefaults": {
             "[rdfox]": {
-                "editor.wordBasedSuggestionsMode": "allDocuments"
+                "editor.wordBasedSuggestions": "allDocuments"
             },
             "[datalog]": {
-                "editor.wordBasedSuggestionsMode": "allDocuments"
+                "editor.wordBasedSuggestions": "allDocuments"
             },
             "[sparql]": {
-                "editor.wordBasedSuggestionsMode": "allDocuments"
+                "editor.wordBasedSuggestions": "allDocuments"
             },
             "[turtle]": {
-                "editor.wordBasedSuggestionsMode": "allDocuments"
+                "editor.wordBasedSuggestions": "allDocuments"
             },
             "[trig]": {
-                "editor.wordBasedSuggestionsMode": "allDocuments"
+                "editor.wordBasedSuggestions": "allDocuments"
             },
             "[n-triples]": {
-                "editor.wordBasedSuggestionsMode": "allDocuments"
+                "editor.wordBasedSuggestions": "allDocuments"
             },
             "[n-quads]": {
-                "editor.wordBasedSuggestionsMode": "allDocuments"
+                "editor.wordBasedSuggestions": "allDocuments"
             }
         },
         "menus": {
