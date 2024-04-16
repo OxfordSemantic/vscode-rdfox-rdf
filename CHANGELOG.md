@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.3 (15 April 2024)
+- Replace function ROLE with AGENT for RDFox version 7.1
+
 ## 1.3.2 (9 February 2024)
 - Update configuration defaults to match new setting names in VS Code
 

@@ -8,6 +8,9 @@
     "ACOSH": {
         "snippetEnd": "($0)"
     },
+    "AGENT": {
+        "snippetEnd": "()"
+    },
     "ASIN": {
         "snippetEnd": "($0)"
     },
@@ -238,9 +241,6 @@
     },
     "REPLACE": {
         "snippetEnd": "($0)"
-    },
-    "ROLE": {
-        "snippetEnd": "()"
     },
     "ROUND": {
         "snippetEnd": "($0)"
