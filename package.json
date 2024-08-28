@@ -2,7 +2,7 @@
     "name": "rdfox-rdf",
     "displayName": "RDFox Syntax Highlighting",
     "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
-    "version": "1.3.3",
+    "version": "1.4.0",
     "publisher": "rdfox",
     "repository": {
         "type": "git",
@@ -41,7 +41,9 @@
         "onLanguage:n-quads",
         "onCommand:rdfox-rdf.open-in-console",
         "onCommand:rdfox-rdf.upload-rule",
+        "onCommand:rdfox-rdf.upload-rule-from-selection",
         "onCommand:rdfox-rdf.delete-rule",
+        "onCommand:rdfox-rdf.delete-rule-from-selection",
         "onCommand:rdfox-rdf.open-settings"
     ],
     "contributes": {
@@ -198,14 +200,26 @@
             },
             {
                 "command": "rdfox-rdf.upload-rule",
-                "title": "Upload Datalog rule to RDFox",
-                "shortTitle": "Upload rule",
+                "title": "Upload Datalog rules to RDFox",
+                "shortTitle": "Upload rules",
+                "icon": "./icons/upload-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.upload-rule-from-selection",
+                "title": "Upload selected Datalog rules to RDFox",
+                "shortTitle": "Upload selected rules",
                 "icon": "./icons/upload-rule.svg"
             },
             {
                 "command": "rdfox-rdf.delete-rule",
-                "title": "Delete Datalog rule from RDFox",
-                "shortTitle": "Delete rule",
+                "title": "Delete Datalog rules from RDFox",
+                "shortTitle": "Delete rules",
+                "icon": "./icons/delete-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.delete-rule-from-selection",
+                "title": "Delete selected Datalog rules from RDFox",
+                "shortTitle": "Delete selected rules",
                 "icon": "./icons/delete-rule.svg"
             },
             {
@@ -273,6 +287,18 @@
                     "command": "rdfox-rdf.open-settings",
                     "group": "navigation@3",
                     "when": "editorLangId == datalog || editorLangId == sparql"
+                }
+            ],
+            "editor/context": [
+                {
+                    "command": "rdfox-rdf.upload-rule-from-selection",
+                    "group": "0_actions",
+                    "when": "editorLangId == datalog"
+                },
+                {
+                    "command": "rdfox-rdf.delete-rule-from-selection",
+                    "group": "0_actions",
+                    "when": "editorLangId == datalog"
                 }
             ]
         }

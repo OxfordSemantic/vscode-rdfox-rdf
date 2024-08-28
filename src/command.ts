@@ -10,9 +10,9 @@ export function openInConsoleCommandHandler(textEditor: vscode.TextEditor, _edit
     var query = encodeURIComponent(textEditor.document.getText())
 
     var url = (configuration.get<string>('URL') ?? "") +
-        "/console/" +
+        "/console/datastores/sparql/?datastore=" +
         (configuration.get<string>('datastoreName') ?? "") +
-        "?query=" +
+        "&query=" +
         query
 
     // See https://github.com/microsoft/vscode/issues/85930
@@ -80,7 +80,7 @@ function getChangeModal(info: ContentResponse["information"]) {
     }
 }
 
-function changeRule(textEditor: vscode.TextEditor, operation: string, title: string, errorMessage: string) {
+function changeRule(textEditor: vscode.TextEditor, operation: string, title: string, errorMessage: string, fromSelection: boolean = false) {
     var configuration = vscode.workspace.getConfiguration('RDFox')
 
     const requestId = uuidv4()
@@ -109,9 +109,11 @@ function changeRule(textEditor: vscode.TextEditor, operation: string, title: str
         })
 
         try {
+            var body = textEditor.document.getText(fromSelection ? textEditor.selection : undefined)
+
             var response = await fetch(url, {
                 method: 'PATCH',
-                body: textEditor.document.getText(),
+                body,
                 headers: {
                     'Content-Type': 'application/x.datalog',
                     'RDFox-Request-ID': requestId
@@ -151,11 +153,18 @@ function changeRule(textEditor: vscode.TextEditor, operation: string, title: str
 }
 
 export function uploadRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
-    changeRule(textEditor, 'add-content', 'Uploading Datalog rule to RDFox...', 'Error uploading Datalog rule to RDFox')
+    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Error uploading Datalog rules to RDFox')
+}
+export function uploadRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
+    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Error uploading Datalog rules to RDFox', true)
 }
 
 export function deleteRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
-    changeRule(textEditor, 'delete-content', 'Deleting Datalog rule from RDFox...', 'Error deleting Datalog rule from RDFox')
+    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Error deleting Datalog rules from RDFox')
+}
+
+export function deleteRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
+    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Error deleting Datalog rules from RDFox', true)
 }
 
 export function openSettingsCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {

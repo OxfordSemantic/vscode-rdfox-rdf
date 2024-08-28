@@ -4,8 +4,10 @@ import * as _commandMap from './commandMap.json';
 import * as _functionMap from './functionMap.json';
 import {
     deleteRuleCommandHandler,
+    deleteRuleFromSelectionCommandHandler,
     openInConsoleCommandHandler,
     openSettingsCommandHandler,
+    uploadRuleFromSelectionCommandHandler,
     uploadRuleCommandHandler
 } from './command';
 import { RDFoxCompletionProvider, FunctionCompletionProvider } from './completion';
@@ -40,7 +42,15 @@ export function activate(context: vscode.ExtensionContext) {
     )
 
     context.subscriptions.push(
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule-from-selection', uploadRuleFromSelectionCommandHandler)
+    )
+
+    context.subscriptions.push(
         vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule', deleteRuleCommandHandler)
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule-from-selection', deleteRuleFromSelectionCommandHandler)
     )
 
     context.subscriptions.push(

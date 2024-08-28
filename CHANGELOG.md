@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.0 (28 August 2024)
+- Update RDFox shell commands for RDFox 7.2
+- Update console URLs for RDFox 7.2
+- Add ability to upload/delete Datalog rules from selection
+
 ## 1.3.3 (15 April 2024)
 - Replace function ROLE with AGENT for RDFox version 7.1
 
