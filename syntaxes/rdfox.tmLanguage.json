@@ -40,7 +40,7 @@
 	"repository": {
 		"keyword": {
 			"name": "keyword.control.rdfox",
-			"match": "(?i)(?<=^\\s*)(active|answer|begin|clear|commit|commitproc|compact|dsconn|dsource|dsprop|dstore|endpoint|evaluate|exec|explain|export|help|import|importaxioms|info|mat|maxmemory|password|prefix|prefixes|quit|recompile|remat|revoke|role|rollback|root|rwtest|serverinfo|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|unset|update)(?=$|\\s)"
+			"match": "(?i)(?<=^\\s*)(active|answer|begin|clear|commit|commitproc|compact|deltaquery|deltaqueryanswer|dsconn|dsource|dsprop|dstore|endpoint|evaluate|exec|explain|export|help|import|importaxioms|info|mat|maxmemory|password|prefix|prefixes|quit|recompile|remat|revoke|role|rollback|root|rwtest|serverinfo|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|unset|update)(?=$|\\s)"
 		},
 		"query-keyword": {
 			"name": "keyword.control.rdfox",

@@ -10,7 +10,7 @@ export function openInConsoleCommandHandler(textEditor: vscode.TextEditor, _edit
     var query = encodeURIComponent(textEditor.document.getText())
 
     var url = (configuration.get<string>('URL') ?? "") +
-        "/console/datastores/sparql/?datastore=" +
+        "/console/datastores/sparql?datastore=" +
         (configuration.get<string>('datastoreName') ?? "") +
         "&query=" +
         query

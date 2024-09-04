@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.1 (4 September 2024)
+- Fix RDFox console URL building
+- Fix highlighting for new RDFox commands
+
 ## 1.4.0 (28 August 2024)
 - Update RDFox shell commands for RDFox 7.2
 - Update console URLs for RDFox 7.2
