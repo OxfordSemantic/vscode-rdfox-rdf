@@ -1,5 +1,4 @@
 import fetch, { FetchError } from 'node-fetch';
-import AbortError from 'node-fetch';
 import { v4 as uuidv4 } from 'uuid';
 import * as vscode from 'vscode';
 import { ContentResponse } from './types';
@@ -55,33 +54,38 @@ function getNumberString(n: Number, singular: String, plural: String) {
     return n.toString() + " " + (n != 1 ? plural : singular)
 }
 
-function getChangeModal(info: ContentResponse["information"]) {
-    const rulesMismatch = info["processed-rules"] > info["changed-rules"]
-    const factsMismatch = info["processed-facts"] > info["changed-facts"]
-
-    if (rulesMismatch || factsMismatch) {
-        const itemsChangedMentioned = 
-            (rulesMismatch ? info["changed-rules"] : 0) +
-            (factsMismatch ? info["facts-changed"] : 0)
-
-        return "Processed " +
-            (rulesMismatch ? getNumberString(info["processed-rules"], "rule", "rules") : "") +
-            ((rulesMismatch && factsMismatch) ? " and " : "") +
-            (factsMismatch ? getNumberString(info["processed-facts"], "fact", "facts") : "") + 
-            ", but only " +
-            (rulesMismatch ? getNumberString(info["changed-rules"], "rule", "rules") : "") +
-            ((rulesMismatch && factsMismatch) ? " and " : "") +
-            (factsMismatch ? getNumberString(info["changed-facts"], "fact", "facts") : "") +
-            (((!rulesMismatch || !factsMismatch) && itemsChangedMentioned == 1) ? " was" : " were") +
-            " changed."
-    }
-    else {
-        return ""
-    }
+function encodeBasicAuth(credentials: string) {
+    return 'Basic ' + Buffer.from(credentials).toString('base64');
 }
 
-function changeRule(textEditor: vscode.TextEditor, operation: string, title: string, errorMessage: string, fromSelection: boolean = false) {
+function getChangeModal(info: ContentResponse["information"]) {
+    var changes = ""
+
+    if (info["processed-rules"] > 0) {
+        changes += "Processed " +
+            getNumberString(info["processed-rules"], "rule", "rules") +
+            ", of which " +
+            info["changed-rules"].toString() +
+            (info["changed-rules"] == 1 ? " was" : " were") +
+            " updated.\n"
+    }
+    if (info["processed-facts"] > 0) {
+        changes += "Processed " +
+            getNumberString(info["processed-facts"], "fact", "facts") +
+            ", of which " +
+            info["changed-facts"].toString() +
+            (info["changed-facts"] == 1 ? " was" : " were") +
+            " updated.\n"
+    }
+    return changes
+
+}
+
+async function changeRule(textEditor: vscode.TextEditor, operation: string, title: string, errorMessage: string, context: vscode.ExtensionContext, fromSelection: boolean = false) {
     var configuration = vscode.workspace.getConfiguration('RDFox')
+
+    var credentials = await context.secrets.get("RDFox.basicAuth")
+    var authorizationHeaders = (!!credentials ? {'Authorization': encodeBasicAuth(credentials ?? "")} : undefined)
 
     const requestId = uuidv4()
 
@@ -104,7 +108,8 @@ function changeRule(textEditor: vscode.TextEditor, operation: string, title: str
         token.onCancellationRequested(() => {
             abortController.abort()
             fetch(cancellationUrl, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: authorizationHeaders
             })
         })
 
@@ -116,7 +121,8 @@ function changeRule(textEditor: vscode.TextEditor, operation: string, title: str
                 body,
                 headers: {
                     'Content-Type': 'application/x.datalog',
-                    'RDFox-Request-ID': requestId
+                    'RDFox-Request-ID': requestId,
+                    ...authorizationHeaders
                 },
                 signal: abortController.signal
             })
@@ -124,7 +130,13 @@ function changeRule(textEditor: vscode.TextEditor, operation: string, title: str
             const responseOk = response.ok
             const responseText = await response.text()
 
-            if(!responseOk) {
+            if(response.status == 401) {
+                credentials = await vscode.window.showInputBox({ title: "Unauthorized", prompt: "Enter credentials, then try again", placeHolder: "username:password"});
+                if(!!credentials) {
+                    await context.secrets.store("RDFox.basicAuth", credentials)
+                }
+            }
+            else if(!responseOk) {
                 vscode.window.showInformationMessage(errorMessage, {modal: true, detail: responseText})
             }
             else {
@@ -132,18 +144,20 @@ function changeRule(textEditor: vscode.TextEditor, operation: string, title: str
                 const modalDetail = getChangeModal(contentResponse["information"])
 
                 if(modalDetail != "") {
-                vscode.window.showInformationMessage("Warning:", {modal: true, detail: modalDetail})
+                    vscode.window.showInformationMessage("Import Complete", {modal: true, detail: modalDetail})
+                } else {
+                    vscode.window.showInformationMessage("Import Complete (Warning)", {modal: true, detail: "No facts or rules were found"})
                 }
             }
 
 
         }
         catch (e) {
-            if(e instanceof AbortError) {
-                console.log("Request was aborted.")
+            if (e instanceof FetchError) {
+                vscode.window.showInformationMessage(e.name, {modal: true, detail: e.message})
             }
-            if(e instanceof FetchError) {
-                vscode.window.showInformationMessage(errorMessage, {modal: true, detail: e.message})
+            else if (e instanceof Error) {
+                vscode.window.showInformationMessage(e.name, {modal: true, detail: e.message + "\n\nRequest URL: " + url})
             }
             else {
                 console.error(e)
@@ -152,21 +166,25 @@ function changeRule(textEditor: vscode.TextEditor, operation: string, title: str
     })
 }
 
-export function uploadRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
-    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Error uploading Datalog rules to RDFox')
+export function uploadRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Import Error', context)
 }
-export function uploadRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
-    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Error uploading Datalog rules to RDFox', true)
-}
-
-export function deleteRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
-    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Error deleting Datalog rules from RDFox')
+export function uploadRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Import Error', context, true)
 }
 
-export function deleteRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
-    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Error deleting Datalog rules from RDFox', true)
+export function deleteRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Deletion Error', context)
+}
+
+export function deleteRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Deletion Error', context, true)
 }
 
 export function openSettingsCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
     vscode.commands.executeCommand('workbench.action.openSettings', ' @ext:rdfox.rdfox-rdf')
+}
+
+export function withContext(context: vscode.ExtensionContext, f: (textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) => void) {
+    return (textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) => f(textEditor, _edit, context)
 }

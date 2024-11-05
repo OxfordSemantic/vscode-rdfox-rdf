@@ -8,7 +8,8 @@ import {
     openInConsoleCommandHandler,
     openSettingsCommandHandler,
     uploadRuleFromSelectionCommandHandler,
-    uploadRuleCommandHandler
+    uploadRuleCommandHandler,
+    withContext
 } from './command';
 import { RDFoxCompletionProvider, FunctionCompletionProvider } from './completion';
 import { RDFoxHoverProvider } from './hover';
@@ -38,19 +39,19 @@ export function activate(context: vscode.ExtensionContext) {
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule', uploadRuleCommandHandler)
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule', withContext(context, uploadRuleCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule-from-selection', uploadRuleFromSelectionCommandHandler)
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule-from-selection', withContext(context, uploadRuleFromSelectionCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule', deleteRuleCommandHandler)
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule', withContext(context, deleteRuleCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule-from-selection', deleteRuleFromSelectionCommandHandler)
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule-from-selection', withContext(context, deleteRuleFromSelectionCommandHandler))
     )
 
     context.subscriptions.push(

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.2 (5 November 2024)
+- Add basic authentication for rule upload (uses VS Code's SecretStorage)
+- Display modal for every rule upload
+
 ## 1.4.1 (4 September 2024)
 - Fix RDFox console URL building
 - Fix highlighting for new RDFox commands
