@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.3 (24 February 2025)
+- Update RDFox shell commands for RDFox 7.3
+- Improve basic authentication experience
+
 ## 1.4.2 (5 November 2024)
 - Add basic authentication for rule upload (uses VS Code's SecretStorage)
 - Display modal for every rule upload

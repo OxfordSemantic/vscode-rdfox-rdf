@@ -84,20 +84,14 @@ function getChangeModal(info: ContentResponse["information"]) {
 async function changeRule(textEditor: vscode.TextEditor, operation: string, title: string, errorMessage: string, context: vscode.ExtensionContext, fromSelection: boolean = false) {
     var configuration = vscode.workspace.getConfiguration('RDFox')
 
-    var credentials = await context.secrets.get("RDFox.basicAuth")
-    var authorizationHeaders = (!!credentials ? {'Authorization': encodeBasicAuth(credentials ?? "")} : undefined)
+    const endpoint = configuration.get<string>('URL') ?? ""
+    const datastore = configuration.get<string>('datastoreName') ?? ""
 
-    const requestId = uuidv4()
-
-    const url = (configuration.get<string>('URL') ?? "") +
+    const url = endpoint +
     "/datastores/" +
-    (configuration.get<string>('datastoreName') ?? "") +
+    datastore +
     "/content?operation=" +
     operation
-
-    const cancellationUrl = (configuration.get<string>('URL') ?? "") +
-    "/requests/" +
-    requestId
 
     vscode.window.withProgress({
         cancellable: true,
@@ -105,16 +99,25 @@ async function changeRule(textEditor: vscode.TextEditor, operation: string, titl
         title
     }, async (_progress, token) => {
         const abortController = new globalThis.AbortController();
-        token.onCancellationRequested(() => {
-            abortController.abort()
-            fetch(cancellationUrl, {
-                method: 'DELETE',
-                headers: authorizationHeaders
-            })
-        })
 
         try {
             var body = textEditor.document.getText(fromSelection ? textEditor.selection : undefined)
+
+            var credentials = await context.secrets.get("RDFox.basicAuth")
+            var authorizationHeaders = (!!credentials ? {'Authorization': encodeBasicAuth(credentials ?? "")} : undefined)
+        
+            var requestId = uuidv4()
+            var cancellationUrl = endpoint +
+            "/requests/" +
+            requestId
+            
+            token.onCancellationRequested(() => {
+                abortController.abort()
+                fetch(cancellationUrl, {
+                    method: 'DELETE',
+                    headers: authorizationHeaders
+                })
+            })
 
             var response = await fetch(url, {
                 method: 'PATCH',
@@ -127,40 +130,64 @@ async function changeRule(textEditor: vscode.TextEditor, operation: string, titl
                 signal: abortController.signal
             })
 
-            const responseOk = response.ok
-            const responseText = await response.text()
-
             if(response.status == 401) {
-                credentials = await vscode.window.showInputBox({ title: "Unauthorized", prompt: "Enter credentials, then try again", placeHolder: "username:password"});
+                credentials = await vscode.window.showInputBox({ title: "Unauthorized", prompt: "Enter credentials in format role:password", placeHolder: "role:password"});
                 if(!!credentials) {
                     await context.secrets.store("RDFox.basicAuth", credentials)
                 }
+                var authorizationHeaders = (!!credentials ? {'Authorization': encodeBasicAuth(credentials ?? "")} : undefined)
+            
+                var requestId = uuidv4()
+                var cancellationUrl = endpoint +
+                "/requests/" +
+                requestId
+
+                token.onCancellationRequested(() => {
+                    abortController.abort()
+                    fetch(cancellationUrl, {
+                        method: 'DELETE',
+                        headers: authorizationHeaders
+                    })
+                })
+
+                var response = await fetch(url, {
+                    method: 'PATCH',
+                    body,
+                    headers: {
+                        'Content-Type': 'application/x.datalog',
+                        'RDFox-Request-ID': requestId,
+                        ...authorizationHeaders
+                    },
+                    signal: abortController.signal
+                })
             }
-            else if(!responseOk) {
-                vscode.window.showInformationMessage(errorMessage, {modal: true, detail: responseText})
+
+            const responseOk = response.ok
+            const responseText = await response.text()
+
+            if(!responseOk) {
+                await vscode.window.showInformationMessage(errorMessage, {modal: true, detail: responseText})
             }
             else {
                 const contentResponse = parseContentResponse(responseText)
                 const modalDetail = getChangeModal(contentResponse["information"])
 
                 if(modalDetail != "") {
-                    vscode.window.showInformationMessage("Import Complete", {modal: true, detail: modalDetail})
+                    await vscode.window.showInformationMessage("Import Complete", {modal: true, detail: modalDetail})
                 } else {
-                    vscode.window.showInformationMessage("Import Complete (Warning)", {modal: true, detail: "No facts or rules were found"})
+                    await vscode.window.showInformationMessage("Import Complete (Warning)", {modal: true, detail: "No facts or rules were found"})
                 }
             }
-
-
         }
         catch (e) {
             if (e instanceof FetchError) {
-                vscode.window.showInformationMessage(e.name, {modal: true, detail: e.message})
+                await vscode.window.showInformationMessage(e.name, {modal: true, detail: "Is the RDFox endpoint reachable?\n\n" + e.message})
             }
             else if (e instanceof Error) {
-                vscode.window.showInformationMessage(e.name, {modal: true, detail: e.message + "\n\nRequest URL: " + url})
+                await vscode.window.showInformationMessage(e.name, {modal: true, detail: e.message + "\n\nRequest URL: " + url})
             }
             else {
-                console.error(e)
+                await vscode.window.showInformationMessage("Unknown Error", {modal: true, detail: "Request URL: " + url})
             }
         }
     })
