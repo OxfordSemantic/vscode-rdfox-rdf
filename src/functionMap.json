@@ -299,6 +299,9 @@
     "STRENDS": {
         "snippetEnd": "($0)"
     },
+    "STREX": {
+        "snippetEnd": "($0)"
+    },
     "STRLANG": {
         "snippetEnd": "($0)"
     },

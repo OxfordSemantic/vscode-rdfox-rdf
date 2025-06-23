@@ -1,10 +1,19 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Trig",
+	"name": "TriG",
 	"scopeName": "source.trig",
 	"patterns": [
 		{
 			"include": "source.turtle"
+		},
+		{
+			"include": "#graph"
 		}
-	]
+	],
+	"repository": {
+		"graph": {
+            "name": "keyword.control.trig",
+            "match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(graph)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{)"
+		}
+	}
 }
