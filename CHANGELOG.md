@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.5 (8 July 2025)
+- Update RDFox command documentation for version 7.4
+
 ## 1.4.4 (23 June 2025)
 - Add highlighting for RDFox's STREX function
 - Add highlighting for GRAPH keyword in TriG files

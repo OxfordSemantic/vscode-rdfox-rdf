@@ -2,7 +2,7 @@
     "name": "rdfox-rdf",
     "displayName": "RDFox Syntax Highlighting",
     "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
-    "version": "1.4.4",
+    "version": "1.4.5",
     "publisher": "rdfox",
     "repository": {
         "type": "git",
