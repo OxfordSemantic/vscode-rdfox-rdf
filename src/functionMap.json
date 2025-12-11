@@ -260,6 +260,9 @@
     "SECONDS": {
         "snippetEnd": "($0)"
     },
+    "SEMSIM": {
+        "snippetEnd": "($0)"
+    },
     "SEPARATOR": {
         "snippetEnd": "=\"$0\""
     },

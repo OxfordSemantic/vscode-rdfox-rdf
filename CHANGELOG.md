@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.4.6 (11 December 2025)
+- Add SEMSIM function
+- Add ability to upload/delete RDF data files
+- Update RDFox command documentation for v7.5
+
 ## 1.4.5 (8 July 2025)
 - Update RDFox command documentation for version 7.4
 

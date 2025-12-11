@@ -1,7 +1,11 @@
 import fetch, { FetchError } from 'node-fetch';
 import { v4 as uuidv4 } from 'uuid';
 import * as vscode from 'vscode';
-import { ContentResponse } from './types';
+import { ContentResponse, MimeMap } from './types';
+
+import * as _mimeMap from './mimeMap.json';
+
+const mimeMap: MimeMap = _mimeMap
 
 export function openInConsoleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
     var configuration = vscode.workspace.getConfiguration('RDFox')
@@ -81,8 +85,11 @@ function getChangeModal(info: ContentResponse["information"]) {
 
 }
 
-async function changeRule(textEditor: vscode.TextEditor, operation: string, title: string, errorMessage: string, context: vscode.ExtensionContext, fromSelection: boolean = false) {
+async function changeContent(textEditor: vscode.TextEditor, operation: string, title: string, errorMessage: string, context: vscode.ExtensionContext, fromSelection: boolean, contentTypeOverride: string = "") {
     var configuration = vscode.workspace.getConfiguration('RDFox')
+
+    const mimeKey = textEditor.document.languageId
+    const contentType = (contentTypeOverride != "") ? contentTypeOverride : (mimeMap[mimeKey])
 
     const endpoint = configuration.get<string>('URL') ?? ""
     const datastore = configuration.get<string>('datastoreName') ?? ""
@@ -106,7 +113,7 @@ async function changeRule(textEditor: vscode.TextEditor, operation: string, titl
             var credentials = await context.secrets.get("RDFox.basicAuth")
             var authorizationHeaders = (!!credentials ? {'Authorization': encodeBasicAuth(credentials ?? "")} : undefined)
         
-            var requestId = uuidv4()
+            var requestId = "Extension-" + uuidv4()
             var cancellationUrl = endpoint +
             "/requests/" +
             requestId
@@ -123,7 +130,7 @@ async function changeRule(textEditor: vscode.TextEditor, operation: string, titl
                 method: 'PATCH',
                 body,
                 headers: {
-                    'Content-Type': 'application/x.datalog',
+                    'Content-Type': contentType,
                     'RDFox-Request-ID': requestId,
                     ...authorizationHeaders
                 },
@@ -137,7 +144,7 @@ async function changeRule(textEditor: vscode.TextEditor, operation: string, titl
                 }
                 var authorizationHeaders = (!!credentials ? {'Authorization': encodeBasicAuth(credentials ?? "")} : undefined)
             
-                var requestId = uuidv4()
+                var requestId = "Extension-" + uuidv4()
                 var cancellationUrl = endpoint +
                 "/requests/" +
                 requestId
@@ -154,7 +161,7 @@ async function changeRule(textEditor: vscode.TextEditor, operation: string, titl
                     method: 'PATCH',
                     body,
                     headers: {
-                        'Content-Type': 'application/x.datalog',
+                        'Content-Type': contentType,
                         'RDFox-Request-ID': requestId,
                         ...authorizationHeaders
                     },
@@ -193,20 +200,42 @@ async function changeRule(textEditor: vscode.TextEditor, operation: string, titl
     })
 }
 
+// ADD/DELETE RULES
+
 export function uploadRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
-    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Import Error', context)
+    changeContent(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Import Error', context, false)
 }
 export function uploadRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
-    changeRule(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Import Error', context, true)
+    changeContent(textEditor, 'add-content', 'Uploading Datalog rules to RDFox...', 'Import Error', context, true)
 }
 
 export function deleteRuleCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
-    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Deletion Error', context)
+    changeContent(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Deletion Error', context, false)
 }
 
 export function deleteRuleFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
-    changeRule(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Deletion Error', context, true)
+    changeContent(textEditor, 'delete-content', 'Deleting Datalog rules from RDFox...', 'Deletion Error', context, true)
 }
+
+// ADD/DELETE DATA
+
+export function uploadDataCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeContent(textEditor, 'add-content', 'Uploading data to RDFox...', 'Import Error', context, false)
+}
+
+export function uploadDataFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeContent(textEditor, 'add-content', 'Uploading data to RDFox...', 'Import Error', context, true)
+}
+
+export function deleteDataCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeContent(textEditor, 'delete-content', 'Deleting data from RDFox...', 'Deletion Error', context, false)
+}
+
+export function deleteDataFromSelectionCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit, context: vscode.ExtensionContext) {
+    changeContent(textEditor, 'delete-content', 'Deleting data from RDFox...', 'Deletion Error', context, true)
+}
+
+// OTHER
 
 export function openSettingsCommandHandler(textEditor: vscode.TextEditor, _edit: vscode.TextEditorEdit) {
     vscode.commands.executeCommand('workbench.action.openSettings', ' @ext:rdfox.rdfox-rdf')

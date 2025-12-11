@@ -2,7 +2,7 @@
     "name": "rdfox-rdf",
     "displayName": "RDFox Syntax Highlighting",
     "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
-    "version": "1.4.5",
+    "version": "1.4.6",
     "publisher": "rdfox",
     "repository": {
         "type": "git",
@@ -44,6 +44,10 @@
         "onCommand:rdfox-rdf.upload-rule-from-selection",
         "onCommand:rdfox-rdf.delete-rule",
         "onCommand:rdfox-rdf.delete-rule-from-selection",
+        "onCommand:rdfox-rdf.upload-data",
+        "onCommand:rdfox-rdf.upload-data-from-selection",
+        "onCommand:rdfox-rdf.delete-data",
+        "onCommand:rdfox-rdf.delete-data-from-selection",
         "onCommand:rdfox-rdf.open-settings"
     ],
     "contributes": {
@@ -223,6 +227,30 @@
                 "icon": "./icons/delete-rule.svg"
             },
             {
+                "command": "rdfox-rdf.upload-data",
+                "title": "Upload data to RDFox",
+                "shortTitle": "Upload data",
+                "icon": "./icons/upload-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.upload-data-from-selection",
+                "title": "Upload selected data to RDFox",
+                "shortTitle": "Upload selected data",
+                "icon": "./icons/upload-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.delete-data",
+                "title": "Delete data from RDFox",
+                "shortTitle": "Delete data",
+                "icon": "./icons/delete-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.delete-data-from-selection",
+                "title": "Delete selected data from RDFox",
+                "shortTitle": "Delete selected data",
+                "icon": "./icons/delete-rule.svg"
+            },
+            {
                 "command": "rdfox-rdf.open-settings",
                 "title": "Open RDFox extension settings",
                 "icon": "./icons/extension-settings.svg"
@@ -284,9 +312,19 @@
                     "when": "editorLangId == datalog"
                 },
                 {
+                    "command": "rdfox-rdf.upload-data",
+                    "group": "navigation@1",
+                    "when": "editorLangId == n-triples || editorLangId == n-quads || editorLangId == turtle || editorLangId == trig"
+                },
+                {
+                    "command": "rdfox-rdf.delete-data",
+                    "group": "navigation@2",
+                    "when": "editorLangId == n-triples || editorLangId == n-quads || editorLangId == turtle || editorLangId == trig"
+                },
+                {
                     "command": "rdfox-rdf.open-settings",
                     "group": "navigation@3",
-                    "when": "editorLangId == datalog || editorLangId == sparql"
+                    "when": "editorLangId == datalog || editorLangId == sparql || editorLangId == n-triples || editorLangId == n-quads || editorLangId == turtle || editorLangId == trig"
                 }
             ],
             "editor/context": [
@@ -299,6 +337,16 @@
                     "command": "rdfox-rdf.delete-rule-from-selection",
                     "group": "0_actions",
                     "when": "editorLangId == datalog"
+                },
+                {
+                    "command": "rdfox-rdf.upload-data-from-selection",
+                    "group": "0_actions",
+                    "when": "editorLangId == n-triples || editorLangId == n-quads || editorLangId == turtle || editorLangId == trig"
+                },
+                {
+                    "command": "rdfox-rdf.delete-data-from-selection",
+                    "group": "0_actions",
+                    "when": "editorLangId == n-triples || editorLangId == n-quads || editorLangId == turtle || editorLangId == trig"
                 }
             ]
         }

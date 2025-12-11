@@ -1,0 +1,16 @@
+{
+    "rdfox": "text/plain",
+    "datalog": "application/x.datalog",
+
+    "sparql-query": "application/sparql-query",
+    "sparql-update": "application/sparql-update",
+
+    "n-triples-strict": "application/n-triples",
+    "n-triples": "application/x.gen-n-triples",
+    "n-quads-strict": "application/n-quads",
+    "n-quads": "application/x.gen-n-quads",
+    "turtle-strict": "text/turtle",
+    "turtle": "text/x.gen-turtle",
+    "trig-strict": "application/trig",
+    "trig": "application/x.gen-trig"
+}

@@ -13,6 +13,10 @@ export interface FunctionMap {
     }
 }
 
+export interface MimeMap {
+    [key: string]: string
+}
+
 export interface ContentResponse {
     error: string[],
     prefix: {
