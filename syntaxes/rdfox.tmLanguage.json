@@ -1,97 +1,97 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "RDFox Shell Script",
-	"scopeName": "source.rdfox",
-	"patterns": [
-		{
-			"include": "source.n-triples#blank-node-label"
-		},
-		{
-			"include": "source.turtle#iri"
-		},
-		{
-			"include": "source.turtle#rdf-literal"
-		},
-		{
-			"include": "#keyword"
-		},
-		{
-			"include": "#echo-command"
-		},
-		{
-			"include": "#grant-command"
-		},
-		{
-			"include": "#query-keyword"
-		},
-		{
-			"include": "#operator"
-		},
-		{
-			"include": "#comment-with-line-continuation"
-		},
-		{
-			"include": "#comment"
-		},
-		{
-			"include": "#line-continuation"
-		}
-	],
-	"repository": {
-		"keyword": {
-			"name": "keyword.control.rdfox",
-			"match": "(?i)(?<=^\\s*)(active|answer|begin|checkintegrity|clear|commit|commitproc|compact|deltaquery|deltaqueryanswer|dsconn|dsource|dsprop|dstore|endpoint|evaluate|exec|explain|export|help|import|importaxioms|info|mat|maxmemory|password|prefix|prefixes|quit|recompile|remat|revoke|role|rollback|root|rwtest|serverinfo|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|unset|update)(?=$|\\s)"
-		},
-		"query-keyword": {
-			"name": "keyword.control.rdfox",
-			"match": "(?i)(?<=^\\s*)(select|construct|ask|insert|delete)(?=$|\\s)"
-		},
-		"echo-command": {
-			"begin": "(?i)(?<=^\\s*)(echo)",
-			"end": "(?<!\\\\)$",
-			"beginCaptures": {
-				"1": { "name": "keyword.control.rdfox" }
-			},
-			"patterns": [
-				{ "include": "#comment-with-line-continuation" },
-				{ "include": "#comment" },
-				{ "include": "#line-continuation" }
-			]
-		},
-		"grant-command": {
-			"begin": "(?i)(?<=^\\s*)(grant)",
-			"end": "(?<!\\\\)$",
-			"beginCaptures": {
-				"1": { "name": "keyword.control.rdfox" }
-			},
-			"patterns": [
-				{ "include": "#comment-with-line-continuation" },
-				{ "include": "#comment" },
-				{ "include": "#line-continuation" }
-			]
-		},
-		"operator": {
-			"name": "support.function.rdfox",
-			"match": "(?<=^|\\s)(!|>|\\+|\\-)(?=$|\\s)"
-		},
-		"line-continuation": {
-			"name": "punctuation.definition.tag.rdfox",
-			"match": "\\\\(?=\\s*$)"
-		},
-		"comment": {
-			"name": "comment.line.rdfox",
-			"match": "(?<=^|\\s)#.*(?=$)"
-		},
-		"comment-with-line-continuation":{
-			"match": "(?<=^|\\s)(#.*)(\\\\)(?=\\s*$)",
-			"captures": {
-				"1": {
-					"name": "comment.line.rdfox"
-				},
-				"2": {
-					"name": "punctuation.definition.tag.rdfox"
-				}
-			}
-		}
-	}
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "RDFox Shell Script",
+    "scopeName": "source.rdfox",
+    "patterns": [
+        {
+            "include": "source.n-triples#blank-node-label"
+        },
+        {
+            "include": "source.turtle#iri"
+        },
+        {
+            "include": "source.turtle#rdf-literal"
+        },
+        {
+            "include": "#keyword"
+        },
+        {
+            "include": "#echo-command"
+        },
+        {
+            "include": "#grant-command"
+        },
+        {
+            "include": "#query-keyword"
+        },
+        {
+            "include": "#operator"
+        },
+        {
+            "include": "#comment-with-line-continuation"
+        },
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#line-continuation"
+        }
+    ],
+    "repository": {
+        "keyword": {
+            "name": "keyword.control.rdfox",
+            "match": "(?i)(?<=^\\s*)(active|answer|begin|checkintegrity|clear|commit|commitproc|compact|deltaquery|deltaqueryanswer|dsconn|dsource|dsprop|dstore|endpoint|evaluate|exec|explain|export|help|import|importaxioms|info|mat|maxmemory|password|prefix|prefixes|quit|recompile|remat|revoke|role|rollback|root|rwtest|serverinfo|set|sleep|srvconn|stats|threads|transcribe|tstamp|tupletable|unset|update)(?=$|\\s)"
+        },
+        "query-keyword": {
+            "name": "keyword.control.rdfox",
+            "match": "(?i)(?<=^\\s*)(select|construct|ask|insert|delete)(?=$|\\s)"
+        },
+        "echo-command": {
+            "begin": "(?i)(?<=^\\s*)(echo)",
+            "end": "(?<!\\\\)$",
+            "beginCaptures": {
+                "1": { "name": "keyword.control.rdfox" }
+            },
+            "patterns": [
+                { "include": "#comment-with-line-continuation" },
+                { "include": "#comment" },
+                { "include": "#line-continuation" }
+            ]
+        },
+        "grant-command": {
+            "begin": "(?i)(?<=^\\s*)(grant)",
+            "end": "(?<!\\\\)$",
+            "beginCaptures": {
+                "1": { "name": "keyword.control.rdfox" }
+            },
+            "patterns": [
+                { "include": "#comment-with-line-continuation" },
+                { "include": "#comment" },
+                { "include": "#line-continuation" }
+            ]
+        },
+        "operator": {
+            "name": "support.function.rdfox",
+            "match": "(?<=^|\\s)(!|>|\\+|\\-)(?=$|\\s)"
+        },
+        "line-continuation": {
+            "name": "punctuation.definition.tag.rdfox",
+            "match": "\\\\(?=\\s*$)"
+        },
+        "comment": {
+            "name": "comment.line.rdfox",
+            "match": "(?<=^|\\s)#.*(?=$)"
+        },
+        "comment-with-line-continuation":{
+            "match": "(?<=^|\\s)(#.*)(\\\\)(?=\\s*$)",
+            "captures": {
+                "1": {
+                    "name": "comment.line.rdfox"
+                },
+                "2": {
+                    "name": "punctuation.definition.tag.rdfox"
+                }
+            }
+        }
+    }
 }
