@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.1 (21 January 2026)
+- Add commands for analyzing the performance of reasoning and queries
+- Show extension commands in relevant context menus
+- Add highlighting for SERVICE SILENT keyword
+
 ## 1.4.6 (11 December 2025)
 - Add SEMSIM function
 - Add ability to upload/delete RDF data files

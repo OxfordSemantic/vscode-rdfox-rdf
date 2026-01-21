@@ -3,17 +3,18 @@ import * as vscode from 'vscode';
 import * as _commandMap from './commandMap.json';
 import * as _functionMap from './functionMap.json';
 import {
-    deleteDataCommandHandler,
-    deleteDataFromSelectionCommandHandler,
-    deleteRuleCommandHandler,
-    deleteRuleFromSelectionCommandHandler,
+    deleteContentCommandHandler,
+    deleteContentFromExplorerCommandHandler,
+    deleteContentFromSelectionCommandHandler,
     openInConsoleCommandHandler,
     openSettingsCommandHandler,
-    uploadDataCommandHandler,
-    uploadDataFromSelectionCommandHandler,
-    uploadRuleCommandHandler,
-    uploadRuleFromSelectionCommandHandler,
-    withContext
+    profileQueryCommandHandler,
+    profileReasoningCommandHandler,
+    uploadContentCommandHandler,
+    uploadContentFromExplorerCommandHandler,
+    uploadContentFromSelectionCommandHandler,
+    withContext,
+    withContextEditor
 } from './command';
 import { RDFoxCompletionProvider, FunctionCompletionProvider } from './completion';
 import { RDFoxHoverProvider } from './hover';
@@ -45,43 +46,67 @@ export function activate(context: vscode.ExtensionContext) {
     // ADD/DELETE RULES
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule', withContext(context, uploadRuleCommandHandler))
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule', withContextEditor(context, uploadContentCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule-from-selection', withContext(context, uploadRuleFromSelectionCommandHandler))
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-rule-from-selection', withContextEditor(context, uploadContentFromSelectionCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule', withContext(context, deleteRuleCommandHandler))
+        vscode.commands.registerCommand('rdfox-rdf.upload-rule-from-explorer', withContext(context, uploadContentFromExplorerCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule-from-selection', withContext(context, deleteRuleFromSelectionCommandHandler))
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule', withContextEditor(context, deleteContentCommandHandler))
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-rule-from-selection', withContextEditor(context, deleteContentFromSelectionCommandHandler))
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('rdfox-rdf.delete-rule-from-explorer', withContext(context, deleteContentFromExplorerCommandHandler))
     )
 
     // ADD/DELETE DATA
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-data', withContext(context, uploadDataCommandHandler))
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-data', withContextEditor(context, uploadContentCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-data-from-selection', withContext(context, uploadDataFromSelectionCommandHandler))
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.upload-data-from-selection', withContextEditor(context, uploadContentFromSelectionCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-data', withContext(context, deleteDataCommandHandler))
+        vscode.commands.registerCommand('rdfox-rdf.upload-data-from-explorer', withContext(context, uploadContentFromExplorerCommandHandler))
     )
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-data-from-selection', withContext(context, deleteDataFromSelectionCommandHandler))
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-data', withContextEditor(context, deleteContentCommandHandler))
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerTextEditorCommand('rdfox-rdf.delete-data-from-selection', withContextEditor(context, deleteContentFromSelectionCommandHandler))
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('rdfox-rdf.delete-data-from-explorer', withContext(context, deleteContentFromExplorerCommandHandler))
     )
 
     // OTHER
 
     context.subscriptions.push(
-        vscode.commands.registerTextEditorCommand('rdfox-rdf.open-settings', openSettingsCommandHandler)
+        vscode.commands.registerCommand('rdfox-rdf.open-settings', openSettingsCommandHandler)
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('rdfox-rdf.profile-query', withContext(context, profileQueryCommandHandler))
+    )
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('rdfox-rdf.profile-reasoning', withContext(context, profileReasoningCommandHandler))
     )
 
     const variablePatternString = "(?:\\?(?:[0-9_A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF]))(?:[0-9\\u00B7\\u0300-\\u036F\\u203F-\\u2040_A-Za-z\\u00C0-\\u00D6\\u00D8-\\u00F6\\u00F8-\\u02FF\\u0370-\\u037D\\u037F-\\u1FFF\\u200C-\\u200D\\u2070-\\u218F\\u2C00-\\u2FEF\\u3001-\\uD7FF\\uF900-\\uFDCF\\uFDF0-\\uFFFD]|(?:[\\uD800-\\uDB7F][\\uDC00-\\uDFFF]))*)"
@@ -98,5 +123,3 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.languages.setLanguageConfiguration('n-triples', {wordPattern})
     vscode.languages.setLanguageConfiguration('n-quads', {wordPattern})
 }
-
-var x: vscode.DocumentFilter

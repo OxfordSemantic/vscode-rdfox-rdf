@@ -25,6 +25,6 @@ Buttons for adding/deleting rules or opening a query in the RDFox Web Console wi
 
 ## License
 
-MIT, Copyright (c) 2025 Oxford Semantic Technologies (see [LICENSE](https://github.com/OxfordSemantic/vscode-rdfox-rdf/blob/main/LICENSE) file)
+MIT, Copyright (c) 2026 Oxford Semantic Technologies (see [LICENSE](https://github.com/OxfordSemantic/vscode-rdfox-rdf/blob/main/LICENSE) file)
 
 The Semantic Web cube logo belongs to W3C (licensing described [here](https://www.w3.org/2007/10/sw-logos.html))

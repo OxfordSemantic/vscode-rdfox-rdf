@@ -41,7 +41,7 @@
         },
         "keyword": {
             "name": "keyword.control.sparql",
-            "match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(add|all|as|asc|ask|bind|clear|construct|copy|create|default|delete|delete\\s+data|desc|describe|distinct|drop|explicit|filter|from|graph|group\\s+by|having|in|insert|insert\\s+data|limit|load|minus|move|named|not|offset|optional|order\\s+by|reduced|select|service|to|tt|union|using|values|where|with)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{)"
+            "match": "(?i)(?<=^|\\s|\\(|\\[|\\{|\\})(add|all|as|asc|ask|bind|clear|construct|copy|create|default|delete|delete\\s+data|desc|describe|distinct|drop|explicit|filter|from|graph|group\\s+by|having|in|insert|insert\\s+data|limit|load|minus|move|named|not|offset|optional|order\\s+by|reduced|select|service|service\\s+silent|to|tt|union|using|values|where|with)(?=$|\\s|\\)|\\]|\\}|\\.|;|,|\\(|\\[|\\{)"
         },
         "function": {
             "name": "keyword.control.sparql",

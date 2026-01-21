@@ -2,7 +2,7 @@
     "name": "rdfox-rdf",
     "displayName": "RDFox Syntax Highlighting",
     "description": "SPARQL, Turtle, TriG, N-Triples, N-Quads, Datalog rules and RDFox shell script syntax highlighting",
-    "version": "1.4.6",
+    "version": "1.5.1",
     "publisher": "rdfox",
     "repository": {
         "type": "git",
@@ -32,6 +32,8 @@
     "icon": "images/icon.png",
     "main": "./out/extension.js",
     "activationEvents": [
+        "onCommand:rdfox-rdf.profile-query",
+        "onCommand:rdfox-rdf.profile-reasoning",
         "onLanguage:rdfox",
         "onLanguage:sparql",
         "onLanguage:datalog",
@@ -42,12 +44,16 @@
         "onCommand:rdfox-rdf.open-in-console",
         "onCommand:rdfox-rdf.upload-rule",
         "onCommand:rdfox-rdf.upload-rule-from-selection",
+        "onCommand:rdfox-rdf.upload-rule-from-explorer",
         "onCommand:rdfox-rdf.delete-rule",
         "onCommand:rdfox-rdf.delete-rule-from-selection",
+        "onCommand:rdfox-rdf.delete-rule-from-explorer",
         "onCommand:rdfox-rdf.upload-data",
         "onCommand:rdfox-rdf.upload-data-from-selection",
+        "onCommand:rdfox-rdf.upload-data-from-explorer",
         "onCommand:rdfox-rdf.delete-data",
         "onCommand:rdfox-rdf.delete-data-from-selection",
+        "onCommand:rdfox-rdf.delete-data-from-explorer",
         "onCommand:rdfox-rdf.open-settings"
     ],
     "contributes": {
@@ -215,6 +221,12 @@
                 "icon": "./icons/upload-rule.svg"
             },
             {
+                "command": "rdfox-rdf.upload-rule-from-explorer",
+                "title": "Upload Datalog rules to RDFox",
+                "shortTitle": "Upload rules",
+                "icon": "./icons/upload-rule.svg"
+            },
+            {
                 "command": "rdfox-rdf.delete-rule",
                 "title": "Delete Datalog rules from RDFox",
                 "shortTitle": "Delete rules",
@@ -224,6 +236,12 @@
                 "command": "rdfox-rdf.delete-rule-from-selection",
                 "title": "Delete selected Datalog rules from RDFox",
                 "shortTitle": "Delete selected rules",
+                "icon": "./icons/delete-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.delete-rule-from-explorer",
+                "title": "Delete Datalog rules from RDFox",
+                "shortTitle": "Delete rules",
                 "icon": "./icons/delete-rule.svg"
             },
             {
@@ -239,6 +257,12 @@
                 "icon": "./icons/upload-rule.svg"
             },
             {
+                "command": "rdfox-rdf.upload-data-from-explorer",
+                "title": "Upload data to RDFox",
+                "shortTitle": "Upload data",
+                "icon": "./icons/upload-rule.svg"
+            },
+            {
                 "command": "rdfox-rdf.delete-data",
                 "title": "Delete data from RDFox",
                 "shortTitle": "Delete data",
@@ -249,6 +273,22 @@
                 "title": "Delete selected data from RDFox",
                 "shortTitle": "Delete selected data",
                 "icon": "./icons/delete-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.delete-data-from-explorer",
+                "title": "Delete data from RDFox",
+                "shortTitle": "Delete data",
+                "icon": "./icons/delete-rule.svg"
+            },
+            {
+                "command": "rdfox-rdf.profile-query",
+                "title": "Run query profiling",
+                "shortTitle": "Profile Query"
+            },
+            {
+                "command": "rdfox-rdf.profile-reasoning",
+                "title": "Run reasoning profiling",
+                "shortTitle": "Profile Reasoning"
             },
             {
                 "command": "rdfox-rdf.open-settings",
@@ -348,6 +388,38 @@
                     "group": "0_actions",
                     "when": "editorLangId == n-triples || editorLangId == n-quads || editorLangId == turtle || editorLangId == trig"
                 }
+            ],
+            "explorer/context": [
+                {
+                    "command": "rdfox-rdf.upload-rule-from-explorer",
+                    "group": "1_rdfox@1",
+                    "when": "resourceLangId == datalog"
+                },
+                {
+                    "command": "rdfox-rdf.upload-data-from-explorer",
+                    "group": "1_rdfox@2",
+                    "when": "resourceLangId == n-triples || resourceLangId == n-quads || resourceLangId == turtle || resourceLangId == trig"
+                },
+                {
+                    "command": "rdfox-rdf.delete-rule-from-explorer",
+                    "group": "1_rdfox@3",
+                    "when": "resourceLangId == datalog"
+                },
+                {
+                    "command": "rdfox-rdf.delete-data-from-explorer",
+                    "group": "1_rdfox@4",
+                    "when": "resourceLangId == n-triples || resourceLangId == n-quads || resourceLangId == turtle || resourceLangId == trig"
+                },
+                {
+                    "command": "rdfox-rdf.profile-query",
+                    "group": "1_rdfox@5",
+                    "when": "resourceLangId == sparql"
+                },
+                {
+                    "command": "rdfox-rdf.profile-reasoning",
+                    "group": "1_rdfox@6",
+                    "when": "resourceLangId == datalog"
+                }
             ]
         }
     },
@@ -359,7 +431,6 @@
         "typescript": "^5.1.6"
     },
     "dependencies": {
-        "node-fetch": "^2.6.12",
         "uuid": "^9.0.0"
     }
 }
