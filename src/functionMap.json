@@ -140,6 +140,9 @@
     "GAMMA": {
         "snippetEnd": "($0)"
     },
+    "GEODIST": {
+        "snippetEnd": "($3, $2, $1, $0)"
+    },
     "HOURS": {
         "snippetEnd": "($0)"
     },

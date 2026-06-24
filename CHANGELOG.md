@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.2 (24 June 2026)
+- Add GEODIST function
+- Add apilog command
+- Update command documentation for RDFox v7.6
+
 ## 1.5.1 (21 January 2026)
 - Add commands for analyzing the performance of reasoning and queries
 - Show extension commands in relevant context menus
