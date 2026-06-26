@@ -19,6 +19,7 @@ import {
 import { RDFoxCompletionProvider, FunctionCompletionProvider } from './completion';
 import { RDFoxHoverProvider } from './hover';
 import { CommandMap, FunctionMap } from './types';
+import { TurtleDefinitionProvider } from './definition';
 
 export function activate(context: vscode.ExtensionContext) {
     const commandMap: CommandMap = _commandMap
@@ -37,6 +38,10 @@ export function activate(context: vscode.ExtensionContext) {
     )
     context.subscriptions.push(
         vscode.languages.registerCompletionItemProvider('datalog', new FunctionCompletionProvider(functionMap))
+    )
+
+    context.subscriptions.push(
+        vscode.languages.registerDefinitionProvider('turtle', new TurtleDefinitionProvider())
     )
 
     context.subscriptions.push(
