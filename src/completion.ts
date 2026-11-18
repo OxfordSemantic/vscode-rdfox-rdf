@@ -78,7 +78,7 @@ export class FunctionCompletionProvider implements vscode.CompletionItemProvider
             if(wordRegExp.test(functionName)) {
                 const nextPosition = document.validatePosition(position.translate(0, 1))
                 const followedByBracket = (document.getText(new vscode.Range(position, nextPosition)) == "(")
-                const completion = new vscode.CompletionItem(functionName + (followedByBracket ? "" : (functionName != "SEPARATOR" ? "()" : "=")), vscode.CompletionItemKind.Function)
+                const completion = new vscode.CompletionItem(functionName + (followedByBracket ? "" : (functionName != "SEPARATOR" && functionName != "PERCENTILE" ? "()" : "=")), vscode.CompletionItemKind.Function)
                 completion.filterText = functionName
                 completion.insertText = new vscode.SnippetString(functionName + (followedByBracket ? "" : this.functionMap[functionName]["snippetEnd"]))
                 return [completion]

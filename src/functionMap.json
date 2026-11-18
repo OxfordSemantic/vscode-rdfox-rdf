@@ -218,6 +218,9 @@
     "MINUTES": {
         "snippetEnd": "($0)"
     },
+    "MODE": {
+        "snippetEnd": "($0)"
+    },
     "MONTH": {
         "snippetEnd": "($0)"
     },
@@ -229,6 +232,15 @@
     },
     "NOW": {
         "snippetEnd": "()"
+    },
+    "PERCENTILE": {
+        "snippetEnd": "=$0"
+    },
+    "PERCENTILE_CONT": {
+        "snippetEnd": "($1 ; PERCENTILE=$0)"
+    },
+    "PERCENTILE_DISC": {
+        "snippetEnd": "($1 ; PERCENTILE=$0)"
     },
     "PI": {
         "snippetEnd": "($0)"
@@ -288,6 +300,12 @@
         "snippetEnd": "($0)"
     },
     "SQRT": {
+        "snippetEnd": "($0)"
+    },
+    "STDDEV_POP": {
+        "snippetEnd": "($0)"
+    },
+    "STDDEV_SAMP": {
         "snippetEnd": "($0)"
     },
     "STR": {
@@ -354,6 +372,12 @@
         "snippetEnd": "($0)"
     },
     "UUID": {
+        "snippetEnd": "($0)"
+    },
+    "VAR_POP": {
+        "snippetEnd": "($0)"
+    },
+    "VAR_SAMP": {
         "snippetEnd": "($0)"
     },
     "YEAR": {

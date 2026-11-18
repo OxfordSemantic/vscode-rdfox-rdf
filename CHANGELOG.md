@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.3 (5 November 2026)
+- Update for RDFox v7.7: add aggregate modes (STABLE/RELAXED) and new statistical aggregate functions
+- Fix DISTINCT highlighting in Datalog
+
 ## 1.5.2 (24 June 2026)
 - Add GEODIST function
 - Add apilog command
